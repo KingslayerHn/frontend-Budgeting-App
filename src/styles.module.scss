@@ -1,0 +1,57 @@
+$primary: #6f5ed3;
+$secondary: #ff9064;
+html {
+  font-family: 'Montserrat', sans-serif !important;
+}
+body {
+  background-color: #0093e9;
+  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+}
+
+.login {
+  div {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  div input {
+    border-bottom: 1px solid #afe0fc !important;
+    border: none;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+  }
+  div label {
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: rgb(141, 141, 141);
+  }
+}
+.banner {
+  div h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: white;
+  }
+}
+.buttons {
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  .primary {
+    background-color: $primary !important;
+    border: none;
+    margin: 5px;
+  }
+  .secondary {
+    background-color: $secondary !important;
+    border: none;
+    margin: 5px;
+  }
+}
