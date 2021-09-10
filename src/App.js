@@ -7,6 +7,8 @@ import setAuthToken from './utils/auth.token';
 import store from './redux/store';
 import { loadUser } from './redux/actions/auth.action';
 import React, { useEffect } from 'react';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -20,9 +22,9 @@ const App = () => {
     <div>
       <Router>
         <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/" component={Dashboard} />
+          <PublicRoute exact path="/login" component={Login} />
+          <PublicRoute exact path="/register" component={Register} />
+          <PrivateRoute exact path="/" component={Dashboard} />
           <Route path="*" component={Error404} />
         </Switch>
       </Router>

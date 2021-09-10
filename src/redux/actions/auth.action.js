@@ -54,6 +54,7 @@ export const register =
 
       dispatch(loadUser());
     } catch (err) {
+      console.log(err);
       if (err.response !== null) {
         const errors = err.response.data;
       }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../styles.module.scss';
 import { Card, Form, Button, Container, Col, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { register } from '../redux/actions/auth.action';
 import { setAlert } from '../redux/actions/alerts.action';
 import Alert from './Alert';
+import Loader from './Loader';
 
 const RegisterForm = () => {
   const history = useHistory();
@@ -23,8 +24,10 @@ const RegisterForm = () => {
     repeat: '',
     genre: 'male',
   });
+  const [loader, setLoader] = useState(false);
 
   const handleSubmit = (e) => {
+    setLoader(true);
     e.preventDefault();
     if (
       firstName === '' ||
@@ -39,9 +42,23 @@ const RegisterForm = () => {
           message: 'All fields are required!!',
         })
       );
+      setLoader(false);
       return;
     }
-    dispatch(register());
+
+    if (password !== repeat) {
+      dispatch(
+        setAlert({
+          variant: 'danger',
+          message: 'The passwords dont match!!',
+        })
+      );
+      setLoader(false);
+      return;
+    }
+
+    dispatch(register({ firstName, lastName, email, password, repeat, genre }));
+    setLoader(false);
   };
 
   const handleChangePage = () => {
@@ -138,8 +155,12 @@ const RegisterForm = () => {
             </Container>
           </Form>
           <div className={styles.buttons}>
-            <Button className={styles.primary} onClick={handleSubmit}>
-              Register
+            <Button
+              className={styles.primary}
+              onClick={handleSubmit}
+              disabled={loader}
+            >
+              {loader ? <Loader /> : 'Register'}
             </Button>
             <Button className={styles.secondary} onClick={handleChangePage}>
               Login
