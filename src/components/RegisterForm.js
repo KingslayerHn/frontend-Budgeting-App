@@ -1,22 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../styles.module.scss';
 import { Card, Form, Button, Container, Col, Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import budget from '../assets/budget.svg';
 import { useForm } from '../hooks/useForm';
+import { useDispatch } from 'react-redux';
+import { register } from '../redux/actions/auth.action';
+import { setAlert } from '../redux/actions/alerts.action';
+import Alert from './Alert';
+import Loader from './Loader';
 
 const RegisterForm = () => {
   const history = useHistory();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log({ firstName, lastName, email, password, repeat, genre });
-  };
-
-  const handleChangePage = () => {
-    history.push('/login');
-  };
-
+  const dispatch = useDispatch();
   const [
     { firstName, lastName, email, password, repeat, genre },
     handleInputChange,
@@ -28,6 +24,46 @@ const RegisterForm = () => {
     repeat: '',
     genre: 'male',
   });
+  const [loader, setLoader] = useState(false);
+
+  const handleSubmit = (e) => {
+    setLoader(true);
+    e.preventDefault();
+    if (
+      firstName === '' ||
+      lastName === '' ||
+      email === '' ||
+      password === '' ||
+      repeat === ''
+    ) {
+      dispatch(
+        setAlert({
+          variant: 'danger',
+          message: 'All fields are required!!',
+        })
+      );
+      setLoader(false);
+      return;
+    }
+
+    if (password !== repeat) {
+      dispatch(
+        setAlert({
+          variant: 'danger',
+          message: 'The passwords dont match!!',
+        })
+      );
+      setLoader(false);
+      return;
+    }
+
+    dispatch(register({ firstName, lastName, email, password, repeat, genre }));
+    setLoader(false);
+  };
+
+  const handleChangePage = () => {
+    history.push('/login');
+  };
 
   return (
     <div className={styles.banner}>
@@ -46,6 +82,7 @@ const RegisterForm = () => {
       </div>
       <Card style={{ width: 500 }}>
         <Card.Body>
+          <Alert />
           <Form onSubmit={handleSubmit}>
             <Container>
               <Row className={styles.register}>
@@ -53,7 +90,7 @@ const RegisterForm = () => {
                   <div>
                     <label>FirstName</label>
                     <input
-                      autoComplete={false}
+                      autoComplete="false"
                       type="text"
                       name="firstName"
                       value={firstName}
@@ -63,7 +100,7 @@ const RegisterForm = () => {
                   <div>
                     <label>Email</label>
                     <input
-                      autoComplete={false}
+                      autoComplete="false"
                       type="text"
                       name="email"
                       value={email}
@@ -79,7 +116,6 @@ const RegisterForm = () => {
                     >
                       <option value="male">Male</option>
                       <option value="female">Female</option>
-                      <option value="other">Other</option>
                     </select>
                   </div>
                 </Col>
@@ -87,7 +123,7 @@ const RegisterForm = () => {
                   <div>
                     <label>LastName</label>
                     <input
-                      autoComplete={false}
+                      autoComplete="false"
                       type="text"
                       name="lastName"
                       value={lastName}
@@ -97,7 +133,7 @@ const RegisterForm = () => {
                   <div>
                     <label>Password</label>
                     <input
-                      autoComplete={false}
+                      autoComplete="false"
                       type="password"
                       name="password"
                       value={password}
@@ -107,7 +143,7 @@ const RegisterForm = () => {
                   <div>
                     <label>Repeat password</label>
                     <input
-                      autoComplete={false}
+                      autoComplete="false"
                       type="password"
                       name="repeat"
                       value={repeat}
@@ -118,10 +154,13 @@ const RegisterForm = () => {
               </Row>
             </Container>
           </Form>
-
           <div className={styles.buttons}>
-            <Button className={styles.primary} onClick={handleSubmit}>
-              Register
+            <Button
+              className={styles.primary}
+              onClick={handleSubmit}
+              disabled={loader}
+            >
+              {loader ? <Loader /> : 'Register'}
             </Button>
             <Button className={styles.secondary} onClick={handleChangePage}>
               Login
