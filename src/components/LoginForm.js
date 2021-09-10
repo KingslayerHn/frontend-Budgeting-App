@@ -42,6 +42,7 @@ const LoginForm = () => {
             <div>
               <label>Username</label>
               <input
+                autoComplete="false"
                 type="text"
                 name="email"
                 value={email}
@@ -51,6 +52,7 @@ const LoginForm = () => {
             <div>
               <label>Password</label>
               <input
+                autoComplete="false"
                 type="text"
                 name="password"
                 value={password}
