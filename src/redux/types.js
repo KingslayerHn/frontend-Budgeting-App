@@ -10,3 +10,8 @@ export const LOGOUT = 'LOGOUT';
 // add alerts
 export const SET_ALERT = 'SET_ALERT';
 export const REMOVE_ALERT = 'REMOVE_ALERT';
+
+// accounts
+export const ADD_ACCOUNT = 'ADD_ACCOUNT';
+export const GET_ACCOUNTS = 'GET_ACCOUNTS';
+export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';

@@ -9,6 +9,7 @@ import {
   LOGOUT,
 } from '../types';
 import setAuthToken from '../../utils/auth.token';
+import { setAlert } from './alerts.action';
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
@@ -57,9 +58,13 @@ export const register =
 
       dispatch(loadUser());
     } catch (err) {
-      console.log(err);
-      if (err.response !== null) {
-        const errors = err.response.data;
+      if (err.response) {
+        dispatch(
+          setAlert({
+            variant: 'danger',
+            message: err.response.data.message,
+          })
+        );
       }
 
       dispatch({
@@ -89,7 +94,14 @@ export const login =
 
       dispatch(loadUser());
     } catch (err) {
-      console.log(err);
+      if (err.response) {
+        dispatch(
+          setAlert({
+            variant: 'danger',
+            message: err.response.data.message,
+          })
+        );
+      }
 
       dispatch({
         type: LOGIN_FAIL,

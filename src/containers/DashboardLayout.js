@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Row, Col } from 'react-bootstrap';
 import avatar from '../assets/avatar.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from '../components/Links';
@@ -10,6 +10,7 @@ import {
   AiOutlineHistory,
   BiTransfer,
 } from 'react-icons/all';
+
 import { logout } from '../redux/actions/auth.action';
 
 const Dashboard = ({ children }) => {
