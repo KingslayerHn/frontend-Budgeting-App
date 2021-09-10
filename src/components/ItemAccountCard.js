@@ -15,7 +15,12 @@ const ItemCard = ({ description, createAt, _id, amount }) => {
 
   return (
     <Card
-      style={{ width: '18rem', backgroundColor: '#ff9064', borderRadius: 20 }}
+      style={{
+        width: '18rem',
+        backgroundColor: '#ff9064',
+        borderRadius: 20,
+        marginBottom: 5,
+      }}
     >
       <GrFormClose
         style={{

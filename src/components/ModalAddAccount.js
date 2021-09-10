@@ -20,6 +20,7 @@ const ModalAddAccount = ({ modal, setModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addAccount({ amount, description }));
+    setModal(false);
   };
   return (
     <Modal show={modal} onHide={handleClose} keyboard={false}>

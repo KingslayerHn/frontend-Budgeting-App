@@ -7,8 +7,6 @@ import setAuthToken from './utils/auth.token';
 import store from './redux/store';
 import { loadUser } from './redux/actions/auth.action';
 import React, { useEffect } from 'react';
-import PrivateRoute from './components/PrivateRoute';
-import PublicRoute from './components/PublicRoute';
 import DasboardRoutes from './containers/DashboardRouter';
 
 if (localStorage.token) {

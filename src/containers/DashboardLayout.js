@@ -10,11 +10,21 @@ import {
   AiOutlineHistory,
   BiTransfer,
 } from 'react-icons/all';
+import { Redirect } from 'react-router-dom';
 
 import { logout } from '../redux/actions/auth.action';
 
 const Dashboard = ({ children }) => {
   const dispatch = useDispatch();
+
+  const { isAuth } = useSelector((state) => state.auth);
+  const {
+    auth: { user },
+  } = useSelector((state) => state);
+
+  if (!isAuth) {
+    return <Redirect to="/login" />;
+  }
 
   const handleCloseSesion = () => {
     dispatch(logout());
@@ -48,9 +58,6 @@ const Dashboard = ({ children }) => {
     },
   ];
 
-  const {
-    auth: { user },
-  } = useSelector((state) => state);
   return (
     <div>
       <Row>
