@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Dashboard from './containers/Dashboard';
+import Dashboard from './containers/DashboardLayout';
 import Error404 from './containers/Error404';
 import Login from './containers/Login';
 import Register from './containers/Register';
@@ -9,6 +9,7 @@ import { loadUser } from './redux/actions/auth.action';
 import React, { useEffect } from 'react';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
+import DasboardRoutes from './containers/DashboardRouter';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -22,9 +23,9 @@ const App = () => {
     <div>
       <Router>
         <Switch>
-          <PublicRoute exact path="/login" component={Login} />
-          <PublicRoute exact path="/register" component={Register} />
-          <PrivateRoute exact path="/" component={Dashboard} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route path="/" component={DasboardRoutes} />
           <Route path="*" component={Error404} />
         </Switch>
       </Router>
