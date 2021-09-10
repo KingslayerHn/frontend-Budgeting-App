@@ -55,3 +55,34 @@ body {
     margin: 5px;
   }
 }
+
+.register {
+  div {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+  }
+  div label {
+    font-weight: 400;
+    margin-bottom: 10px;
+    color: rgb(141, 141, 141);
+  }
+  div select {
+    font-weight: 400;
+    border: none;
+    border-bottom: 1px solid #afe0fc !important;
+    color: rgb(141, 141, 141);
+    padding-bottom: 5px;
+  }
+  div select#xyz {
+    outline: none !important;
+    margin-bottom: 10px;
+  }
+  div input {
+    border-bottom: 1px solid #afe0fc !important;
+    border: none;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+  }
+}

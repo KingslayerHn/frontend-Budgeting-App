@@ -1,15 +1,21 @@
 import React from 'react';
-import { Card, Button, Form, Container } from 'react-bootstrap';
+import { Card, Button, Form } from 'react-bootstrap';
 import styles from '../styles.module.scss';
 import bugdet from '../assets/budget.svg';
 import { useHistory } from 'react-router-dom';
+import { useForm } from '../hooks/useForm';
 
 const LoginForm = () => {
   const history = useHistory();
 
+  const [{ email, password }, handleInputChange] = useForm({
+    email: '',
+    password: '',
+  });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('do somethings...');
+    console.log({ password, email });
   };
 
   const handleChangePage = () => {
@@ -35,14 +41,23 @@ const LoginForm = () => {
           <Form className={styles.login} onSubmit={handleSubmit}>
             <div>
               <label>Username</label>
-              <input type="text" />
+              <input
+                type="text"
+                name="email"
+                value={email}
+                onChange={handleInputChange}
+              />
             </div>
             <div>
               <label>Password</label>
-              <input type="text" />
+              <input
+                type="text"
+                name="password"
+                value={password}
+                onChange={handleInputChange}
+              />
             </div>
           </Form>
-          <Container></Container>
           <div className={styles.buttons}>
             <Button className={styles.primary} onClick={handleSubmit}>
               Login
