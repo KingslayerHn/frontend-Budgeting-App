@@ -9,10 +9,12 @@ import Tranferences from './Tranferences';
 import History from './History';
 import Error404 from './Error404';
 import { getAccounts } from '../redux/actions/account.action';
+import { getExpenses } from '../redux/actions/expenses.action';
 
-const DashboardRouter = ({ getAccounts }) => {
+const DashboardRouter = ({ getAccounts, getExpenses }) => {
   useEffect(() => {
     getAccounts();
+    getExpenses();
   }, []);
 
   return (
@@ -29,4 +31,4 @@ const DashboardRouter = ({ getAccounts }) => {
   );
 };
 
-export default connect(null, { getAccounts })(DashboardRouter);
+export default connect(null, { getAccounts, getExpenses })(DashboardRouter);

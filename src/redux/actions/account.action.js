@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_ACCOUNT, DELETE_ACCOUNT, GET_ACCOUNTS } from '../types';
+import { ADD_ACCOUNT, DELETE_ACCOUNT, GET_ACCOUNTS, DEBIT } from '../types';
 
 export const getAccounts = () => async (dispatch) => {
   try {
@@ -54,3 +54,22 @@ export const deleteAccount = (id) => async (dispatch) => {
     console.log(err);
   }
 };
+
+export const debit =
+  ({ id, amount }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const body = JSON.stringify({ amount });
+
+    try {
+      const res = await axios.put(`/api/accounts/${id}`, body, config);
+      dispatch({ type: DEBIT, payload: res.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };

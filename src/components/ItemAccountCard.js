@@ -36,12 +36,10 @@ const ItemCard = ({ description, createAt, _id, amount }) => {
         <Card.Title style={{ fontWeight: '500', color: '#fff', fontSize: 30 }}>
           {description}
         </Card.Title>
-        <Card.Subtitle
-          className="mb-2 text-muted"
-          style={{ color: '#fff !important' }}
-        >
-          amount
+        <Card.Subtitle className="mb-2 text-muted" style={{ color: '#FFFF' }}>
+          Number: {_id}
         </Card.Subtitle>
+
         <Card.Text style={{ fontWeight: '600', fontSize: 40 }}>
           <NumberFormat
             value={amount}
