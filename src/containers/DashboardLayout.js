@@ -47,11 +47,6 @@ const Dashboard = ({ children }) => {
       Image: <BsBoxArrowInRight />,
     },
     {
-      label: 'History',
-      to: '/history',
-      Image: <AiOutlineHistory />,
-    },
-    {
       label: 'Transfer',
       to: '/transfer',
       Image: <BiTransfer />,

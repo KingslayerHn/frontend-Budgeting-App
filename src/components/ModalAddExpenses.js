@@ -27,6 +27,7 @@ const ModalAddExpenses = ({ modal, setModal }) => {
   const [account, setAccount] = useState([]);
 
   const handleClose = () => {
+    setAccount([]);
     setModal(false);
   };
   const accounts = useSelector((state) => state.accounts);
@@ -43,9 +44,10 @@ const ModalAddExpenses = ({ modal, setModal }) => {
     e.preventDefault();
     dispatch(
       addExpense({
-        amount: account[0].amount - amount,
+        amount: amount,
         description,
         id: account[0]._id,
+        amountAccount: account[0].amount,
       })
     );
     setModal(false);

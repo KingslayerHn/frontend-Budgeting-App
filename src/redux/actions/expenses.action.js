@@ -22,7 +22,7 @@ export const getExpenses = () => async (dispatch) => {
 };
 
 export const addExpense =
-  ({ amount, description, id }) =>
+  ({ amount, description, id, amountAccount }) =>
   async (dispatch) => {
     try {
       const tempAmount = parseFloat(amount);
@@ -32,14 +32,17 @@ export const addExpense =
         },
       };
 
-      const body = JSON.stringify({ amount: tempAmount, description });
+      const body = JSON.stringify({
+        amount: tempAmount,
+        description,
+      });
 
       const res = await axios.post(`/api/expenses/${id}`, body, config);
       dispatch({
         type: ADD_EXPENSES,
         payload: res.data,
       });
-      dispatch(debit({ amount: tempAmount, id: id }));
+      dispatch(debit({ amount: amountAccount - tempAmount, id: id }));
     } catch (err) {
       console.log(err.response);
     }

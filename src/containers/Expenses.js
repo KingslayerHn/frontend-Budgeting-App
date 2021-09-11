@@ -5,6 +5,7 @@ import { IoAddCircleSharp } from 'react-icons/all';
 import ModalAddExpenses from '../components/ModalAddExpenses';
 import { GET_ACCOUNTS } from '../redux/types';
 import NumberFormat from 'react-number-format';
+import moment from 'moment';
 
 const Expenses = () => {
   const expenses = useSelector((state) => state.expenses);
@@ -59,6 +60,7 @@ const Expenses = () => {
                 <th>Description</th>
                 <th>Account</th>
                 <th>Amount</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>
@@ -75,6 +77,7 @@ const Expenses = () => {
                       />
                     }
                   </td>
+                  <td>{moment(item.createAt).format('LL')}</td>
                 </tr>
               ))}
             </tbody>
