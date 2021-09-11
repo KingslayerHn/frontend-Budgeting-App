@@ -1,5 +1,11 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { ADD_ACCOUNT, DELETE_ACCOUNT, GET_ACCOUNTS, DEBIT } from '../types';
+import {
+  ADD_ACCOUNT,
+  DELETE_ACCOUNT,
+  GET_ACCOUNTS,
+  DEBIT,
+  ADD,
+} from '../types';
 const initialState = {
   items: [],
 };
@@ -13,6 +19,7 @@ export default (state = initialState, action) => {
         items: payload,
       };
     case DEBIT:
+    case ADD:
       return {
         ...state,
         items: state.items.map((item) => {

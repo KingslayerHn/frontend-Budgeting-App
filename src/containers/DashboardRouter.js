@@ -9,11 +9,13 @@ import Tranferences from './Tranferences';
 import Error404 from './Error404';
 import { getAccounts } from '../redux/actions/account.action';
 import { getExpenses } from '../redux/actions/expenses.action';
+import { getIncomes } from '../redux/actions/incomes.action';
 
-const DashboardRouter = ({ getAccounts, getExpenses }) => {
+const DashboardRouter = ({ getAccounts, getExpenses, getIncomes }) => {
   useEffect(() => {
     getAccounts();
     getExpenses();
+    getIncomes();
   }, []);
 
   return (
@@ -29,4 +31,6 @@ const DashboardRouter = ({ getAccounts, getExpenses }) => {
   );
 };
 
-export default connect(null, { getAccounts, getExpenses })(DashboardRouter);
+export default connect(null, { getAccounts, getExpenses, getIncomes })(
+  DashboardRouter
+);
