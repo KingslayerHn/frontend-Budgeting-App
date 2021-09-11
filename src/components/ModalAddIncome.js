@@ -10,17 +10,17 @@ const ModalAddIncome = ({ modal, setModal }) => {
   const expensesDefData = [
     'Rent',
     'Utilities',
-    'Electricity',
-    'Internet',
-    'Cellphone plan',
-    'Travel expences',
-    'Insurance',
-    'Administrative and general supply',
-    'Food',
-    'clothes',
-    'laundry',
-    'University',
-    'School',
+    'Salary',
+    'Dividents',
+    'Interest',
+    'Rest seeking',
+    'Capital gains',
+    'Tangible Assets',
+    'Intangible Assets',
+    'Bussines profits',
+    'Freelancer',
+    'Adicional Labour',
+    'Unearned Incomes',
   ];
   const dispatch = useDispatch();
   const [account, setAccount] = useState([]);

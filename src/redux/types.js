@@ -25,3 +25,7 @@ export const GET_EXPENCES = 'GET_EXPENCES';
 // income
 export const ADD_INCOMES = 'ADD_INCOMES';
 export const GET_INCOMES = 'GET_INCOMES';
+
+// TRANFERENCES
+export const ADD_TRANSFER = 'ADD_TRANSFER';
+export const GET_TRANSFERENCES = 'GET_TRANSFERENCES';
