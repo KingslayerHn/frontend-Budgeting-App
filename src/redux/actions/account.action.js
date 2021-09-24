@@ -6,6 +6,7 @@ import {
   DEBIT,
   ADD,
 } from '../types';
+import { setAlert as createAlert } from './alerts.action';
 
 export const getAccounts = () => async (dispatch) => {
   try {
@@ -44,6 +45,12 @@ export const addAccount =
         type: ADD_ACCOUNT,
         payload: res.data,
       });
+      dispatch(
+        createAlert({
+          message: 'The account was added successfully!!',
+          variant: 'success',
+        })
+      );
     } catch (err) {
       console.log(err.response);
     }
@@ -56,6 +63,12 @@ export const deleteAccount = (id) => async (dispatch) => {
       type: DELETE_ACCOUNT,
       payload: res.data,
     });
+    dispatch(
+      createAlert({
+        message: 'Account deleted!!',
+        variant: 'success',
+      })
+    );
   } catch (err) {
     console.log(err);
   }

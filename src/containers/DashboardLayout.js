@@ -3,16 +3,19 @@ import { Row, Col } from 'react-bootstrap';
 import avatar from '../assets/avatar.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from '../components/Links';
+import Alert from '../components/Alert';
 import {
   MdAccountBalance,
   BsBoxArrowInRight,
   BsBoxArrowInLeft,
   AiOutlineHistory,
   BiTransfer,
+  FaUserFriends,
 } from 'react-icons/all';
 import { Redirect } from 'react-router-dom';
 
 import { logout } from '../redux/actions/auth.action';
+import Alerts from '../components/Alert';
 
 const Dashboard = ({ children }) => {
   const dispatch = useDispatch();
@@ -50,6 +53,11 @@ const Dashboard = ({ children }) => {
       label: 'Transfer',
       to: '/transfer',
       Image: <BiTransfer />,
+    },
+    {
+      label: 'Friends',
+      to: '/friends',
+      Image: <FaUserFriends />,
     },
   ];
 
@@ -119,7 +127,10 @@ const Dashboard = ({ children }) => {
             </button>
           </div>
         </Col>
-        <Col xs={10}>{children}</Col>
+        <Col xs={10}>
+          {children}
+          <Alert />
+        </Col>
       </Row>
     </div>
   );

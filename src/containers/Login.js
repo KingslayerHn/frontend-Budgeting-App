@@ -2,6 +2,7 @@ import React from 'react';
 import LoginForm from '../components/LoginForm';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Alerts from '../components/Alert';
 
 const Login = () => {
   const { isAuth } = useSelector((state) => state.auth);
@@ -21,6 +22,7 @@ const Login = () => {
       }}
     >
       <LoginForm />
+      <Alerts />
     </div>
   );
 };

@@ -10,13 +10,14 @@ import Error404 from './Error404';
 import { getAccounts } from '../redux/actions/account.action';
 import { getExpenses } from '../redux/actions/expenses.action';
 import { getIncomes } from '../redux/actions/incomes.action';
+import Friends from '../containers/Friends';
 
 const DashboardRouter = ({ getAccounts, getExpenses, getIncomes }) => {
   useEffect(() => {
     getAccounts();
     getExpenses();
     getIncomes();
-  }, []);
+  });
 
   return (
     <Layout>
@@ -25,6 +26,7 @@ const DashboardRouter = ({ getAccounts, getExpenses, getIncomes }) => {
         <Route path="/expenses" component={Expenses} />
         <Route path="/incomes" component={Incomes} />
         <Route path="/transfer" component={Tranferences} />
+        <Route path="/friends" component={Friends} />
         <Route path="*" component={Error404} />
       </Switch>
     </Layout>

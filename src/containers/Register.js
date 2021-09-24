@@ -2,6 +2,7 @@ import React from 'react';
 import RegisterForm from '../components/RegisterForm';
 import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import Alerts from '../components/Alert';
 
 const Register = () => {
   const { isAuth } = useSelector((state) => state.auth);
@@ -21,6 +22,7 @@ const Register = () => {
       }}
     >
       <RegisterForm />
+      <Alerts />
     </div>
   );
 };

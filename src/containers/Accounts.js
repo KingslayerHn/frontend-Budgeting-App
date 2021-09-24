@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { IoAddCircleSharp } from 'react-icons/all';
 import { Container, Col, Row } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ModalAddAccount from '../components/ModalAddAccount';
 import ItemCard from '../components/ItemAccountCard';
-import { getAccounts } from '../redux/actions/account.action';
 
 const Accounts = () => {
-  const dispatch = useDispatch();
-
   const { items } = useSelector((state) => {
     return state.accounts;
   });

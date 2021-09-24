@@ -7,7 +7,6 @@ import { useForm } from '../hooks/useForm';
 import { useDispatch } from 'react-redux';
 import { register } from '../redux/actions/auth.action';
 import { setAlert } from '../redux/actions/alerts.action';
-import Alert from './Alert';
 import Loader from './Loader';
 
 const RegisterForm = () => {
@@ -82,7 +81,6 @@ const RegisterForm = () => {
       </div>
       <Card style={{ width: 500 }}>
         <Card.Body>
-          <Alert />
           <Form onSubmit={handleSubmit}>
             <Container>
               <Row className={styles.register}>
@@ -153,19 +151,20 @@ const RegisterForm = () => {
                 </Col>
               </Row>
             </Container>
+            <div className={styles.buttons}>
+              <Button
+                className={styles.primary}
+                onClick={handleSubmit}
+                disabled={loader}
+                type="submit"
+              >
+                {loader ? <Loader /> : 'Register'}
+              </Button>
+              <Button className={styles.secondary} onClick={handleChangePage}>
+                Login
+              </Button>
+            </div>
           </Form>
-          <div className={styles.buttons}>
-            <Button
-              className={styles.primary}
-              onClick={handleSubmit}
-              disabled={loader}
-            >
-              {loader ? <Loader /> : 'Register'}
-            </Button>
-            <Button className={styles.secondary} onClick={handleChangePage}>
-              Login
-            </Button>
-          </div>
         </Card.Body>
       </Card>
     </div>
