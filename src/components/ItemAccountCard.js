@@ -1,16 +1,25 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import { GrFormClose } from 'react-icons/all';
+import { AiOutlineCloseCircle } from 'react-icons/all';
 import { useDispatch } from 'react-redux';
 import NumberFormat from 'react-number-format';
-import { deleteAccount } from '../redux/actions/account.action';
 import moment from 'moment';
+import { getAccountReference } from '../redux/actions/references.action';
 
-const ItemCard = ({ description, createAt, _id, amount }) => {
+const ItemCard = ({
+  description,
+  createAt,
+  _id,
+  amount,
+  modal,
+  setModal,
+  item,
+}) => {
   const dispatch = useDispatch();
 
-  const handleDelete = (_id) => {
-    dispatch(deleteAccount(_id));
+  const handleDelete = () => {
+    dispatch(getAccountReference(item));
+    setModal(true);
   };
 
   return (
@@ -22,15 +31,16 @@ const ItemCard = ({ description, createAt, _id, amount }) => {
         marginBottom: 5,
       }}
     >
-      <GrFormClose
+      <AiOutlineCloseCircle
         style={{
-          color: '#fff',
+          color: '#fff !important',
           position: 'absolute',
           top: 10,
           right: 10,
           cursor: 'pointer',
         }}
-        onClick={() => handleDelete(_id)}
+        color="#fff"
+        onClick={handleDelete}
       />
       <Card.Body>
         <Card.Title style={{ fontWeight: '500', color: '#fff', fontSize: 30 }}>
