@@ -4,6 +4,7 @@ import { Container, Col, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import ModalAddAccount from '../components/ModalAddAccount';
 import ItemCard from '../components/ItemAccountCard';
+import ModalDeleteAccount from '../components/ModalDeleteAccount';
 
 const Accounts = () => {
   const { items } = useSelector((state) => {
@@ -11,14 +12,19 @@ const Accounts = () => {
   });
 
   const [modal, setModal] = useState(false);
+  const [modalDelete, setModalDelete] = useState(false);
 
   const handleOpenModal = () => {
     setModal(true);
+  };
+  const handleOpenModalDelete = () => {
+    setModalDelete(true);
   };
 
   return (
     <Container>
       <ModalAddAccount modal={modal} setModal={setModal} />
+      <ModalDeleteAccount modal={modalDelete} setModal={setModalDelete} />
       <IoAddCircleSharp
         style={{
           position: 'absolute',
@@ -47,7 +53,12 @@ const Accounts = () => {
         <Row style={{ marginTop: 50 }}>
           {items.map((item) => (
             <Col xs={3} key={item._id}>
-              <ItemCard {...item} />
+              <ItemCard
+                {...item}
+                modal={modalDelete}
+                setModal={setModalDelete}
+                item={item}
+              />
             </Col>
           ))}
         </Row>
