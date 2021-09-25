@@ -22,7 +22,6 @@ import Alert from '../components/Alert';
 const LoginForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const alerts = useSelector((state) => state);
 
   const [{ email, password }, handleInputChange] = useForm({
     email: '',
