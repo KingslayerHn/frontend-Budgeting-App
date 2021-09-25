@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import avatar from '../assets/avatar.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from '../components/Links';
 import Alert from '../components/Alert';
 import {
-  MdAccountBalance,
+  BsGraphUp,
   BsBoxArrowInRight,
   BsBoxArrowInLeft,
-  AiOutlineHistory,
   BiTransfer,
   FaUserFriends,
+  MdAccountBalance,
 } from 'react-icons/all';
 import { Redirect } from 'react-router-dom';
 
@@ -62,10 +62,105 @@ const Dashboard = ({ children }) => {
   ];
 
   return (
-    <div>
-      <Row>
-        <Col xs={2} style={{ backgroundColor: '#6f5ed3', height: '100vh' }}>
+    <div style={{ width: '100vw', height: '100vh', display: 'flex' }}>
+      <section
+        style={{
+          width: '20%',
+          height: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <Container
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%',
+          }}
+        >
           <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100%',
+              flex: 1,
+            }}
+          >
+            <BsGraphUp
+              style={{ fontSize: 80, fontWeight: 600, color: '#fff' }}
+            />
+          </div>
+
+          <div
+            style={{
+              flex: 2,
+            }}
+          >
+            {links.map((link, index) => (
+              <Link
+                Image={link.Image}
+                label={link.label}
+                to={link.to}
+                key={index}
+              />
+            ))}
+          </div>
+        </Container>
+      </section>
+      <section
+        style={{
+          width: '100%',
+          height: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <div
+          style={{
+            borderRadius: 60,
+            backgroundColor: '#fff',
+            width: '98%',
+            height: '98%',
+            border: 'none',
+          }}
+        >
+          <Row style={{ height: '100%' }}>
+            <Col
+              xs={9}
+              style={{
+                minHeight: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                padding: 40,
+              }}
+            >
+              bhola
+            </Col>
+            <Col
+              xs={3}
+              style={{
+                borderLeft: '2px solid #F7F8FC',
+                minHeight: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                padding: 30,
+              }}
+            >
+              como estas
+            </Col>
+          </Row>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Dashboard;
+
+{
+  /* <div
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -88,7 +183,6 @@ const Dashboard = ({ children }) => {
                   width: 150,
                   marginTop: 50,
                   marginBottom: 10,
-                  fontFamily: 'Montserrat',
                 }}
               />
               <h2 style={{ color: '#ff9064', fontSize: 22 }}>{`${
@@ -125,15 +219,5 @@ const Dashboard = ({ children }) => {
             >
               Close sesion
             </button>
-          </div>
-        </Col>
-        <Col xs={10}>
-          {children}
-          <Alert />
-        </Col>
-      </Row>
-    </div>
-  );
-};
-
-export default Dashboard;
+          </div> */
+}

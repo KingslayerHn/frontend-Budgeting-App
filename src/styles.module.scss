@@ -125,6 +125,56 @@ body {
     padding: 0 !important;
   }
 }
+.navlinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+  flex-direction: row;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  transition: background-color ease 0.3s;
+
+  .icon {
+    margin-left: 15px;
+    display: flex;
+    flex: 1;
+    font-size: 23px;
+    color: #bdc3d8;
+  }
+  .label {
+    display: flex;
+    flex: 5;
+    font-size: 17px;
+    color: #bdc3d8;
+  }
+}
+.navlinks:hover {
+  background-color: #6a84f6;
+  .label {
+    color: #fff;
+  }
+  .icon {
+    color: #fff;
+  }
+}
+
+.activeLinks {
+  background-color: #6a84f6;
+  border-radius: 10px;
+  .label {
+    color: #fff;
+  }
+  .icon {
+    color: #fff;
+  }
+}
+
 .alerts {
   animation: slidein 0.7s ease;
   @keyframes slidein {
