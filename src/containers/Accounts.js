@@ -7,25 +7,10 @@ const Accounts = () => {
     return state.accounts;
   });
 
-  const a = [
-    {
-      title: 'Salutec',
-      amount: 2000,
-    },
-    {
-      title: 'Banco de occidente',
-      amount: 4000,
-    },
-    {
-      title: 'Salutec',
-      amount: 2000,
-    },
-  ];
-
   return (
     <>
-      {a.length > 0 ? (
-        a.map((item) => <AccountItem {...item} />)
+      {items.length > 0 ? (
+        items.map((item) => <AccountItem {...item} key={item._id} />)
       ) : (
         <div
           style={{

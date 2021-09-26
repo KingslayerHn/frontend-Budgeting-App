@@ -6,15 +6,7 @@ import NumberFormat from 'react-number-format';
 import moment from 'moment';
 import { getAccountReference } from '../redux/actions/references.action';
 
-const ItemCard = ({
-  description,
-  createAt,
-  _id,
-  amount,
-  modal,
-  setModal,
-  item,
-}) => {
+const ItemCard = ({ description, createAt, _id, amount, setModal, item }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Container, Row, Col, Table } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { Container, Row, Table } from 'react-bootstrap';
 import { IoAddCircleSharp } from 'react-icons/all';
 import ModalAddTransference from '../components/ModalAddTransference';
 import NumberFormat from 'react-number-format';

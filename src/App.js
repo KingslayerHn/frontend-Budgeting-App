@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Dashboard from './containers/DashboardLayout';
 import Error404 from './containers/Error404';
 import Login from './containers/Login';
 import Register from './containers/Register';

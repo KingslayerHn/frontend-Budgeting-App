@@ -3,7 +3,7 @@ import styles from '../styles.module.scss';
 import { useHistory } from 'react-router-dom';
 import { useForm } from '../hooks/useForm';
 import { setAlert } from '../redux/actions/alerts.action';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Loader from './Loader';
 import { login } from '../redux/actions/auth.action';
 import Carousel from './login/Carousel';

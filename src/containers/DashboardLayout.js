@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
 import avatar from '../assets/avatar.svg';
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,10 +18,12 @@ import Avatar from '../components/dashboard/Avatar';
 
 import styles from '../styles.module.scss';
 import Accounts from './Accounts';
+import AddAccount from '../components/Account/AddAccount';
 
 const Dashboard = ({ children }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const [add, setAdd] = useState(false);
 
   const { isAuth } = useSelector((state) => state.auth);
   const {
@@ -35,6 +37,10 @@ const Dashboard = ({ children }) => {
   const handleCloseSesion = () => {
     dispatch(logout());
     history.push('/login');
+  };
+
+  const handleAdd = () => {
+    setAdd(true);
   };
 
   const links = [
@@ -178,20 +184,39 @@ const Dashboard = ({ children }) => {
                 <Accounts />
               </div>
               <div
-                style={{ display: 'flex', alignItems: 'center', padding: 40 }}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  paddingRight: 40,
+                  paddingLeft: 40,
+                  paddingTop: 40,
+                }}
+                onClick={handleAdd}
               >
-                <AiFillPlusCircle
+                <div
                   style={{
-                    color: '#4e6ef5',
-                    fontSize: 60,
-                    marginRight: 20,
-                    cursor: 'pointer',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    backgroundColor: 'white',
+                    padding: 10,
+                    borderTopRightRadius: 20,
                   }}
-                />
-                <h5 style={{ fontWeight: 400, color: '#D5DCE6' }}>
-                  add account
-                </h5>
+                >
+                  <AiFillPlusCircle
+                    style={{
+                      color: '#4e6ef5',
+                      fontSize: 60,
+                      marginRight: 20,
+                      cursor: 'pointer',
+                    }}
+                  />
+                  <h5 style={{ fontWeight: 400, color: '#D5DCE6' }}>
+                    add account
+                  </h5>
+                </div>
               </div>
+              {add && <AddAccount setAdd={setAdd} />}
             </Col>
           </Row>
         </div>

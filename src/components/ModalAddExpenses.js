@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Alert from './Alert';
 import styles from '../styles.module.scss';
 import { addExpense } from '../redux/actions/expenses.action';
-import { setAlert } from '../redux/actions/alerts.action';
 
 const ModalAddExpenses = ({ modal, setModal }) => {
   const expensesDefData = [
