@@ -12,6 +12,9 @@ body {
   height: 100vh;
   font-size: 9 !important;
 }
+input:focus {
+  box-shadow: none !important;
+}
 button {
   background-color: $primary !important;
 }
@@ -270,6 +273,39 @@ button {
     width: 100%;
     flex-direction: row;
     justify-content: flex-start;
+  }
+}
+
+// search
+.search {
+  background-color: red;
+  display: flex;
+  flex: 1;
+  outline: none !important;
+  border-radius: 30px;
+  background-color: #fff;
+  align-items: center;
+  .inputSearch {
+    border: none;
+    width: 70%;
+    margin-right: 20px;
+    padding: 25px;
+    font-weight: 300;
+    color: $third !important;
+  }
+}
+.notificationIconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 20px;
+  .notificationIcon {
+    color: #979899;
+    font-size: 35px;
+  }
+  .notificationIcon:hover {
+    color: $primary;
   }
 }
 

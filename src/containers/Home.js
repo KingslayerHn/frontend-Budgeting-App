@@ -6,9 +6,9 @@ const Home = () => {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        alignItems: 'start',
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'start',
       }}
     >
       <h1

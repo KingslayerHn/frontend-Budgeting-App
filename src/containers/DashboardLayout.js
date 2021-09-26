@@ -20,6 +20,7 @@ import Alert from '../components/Alert';
 import styles from '../styles.module.scss';
 import Accounts from './Accounts';
 import AddAccount from '../components/Account/AddAccount';
+import Nav from '../components/dashboard/Nav';
 
 const Dashboard = ({ children }) => {
   const dispatch = useDispatch();
@@ -147,6 +148,7 @@ const Dashboard = ({ children }) => {
                 padding: 50,
               }}
             >
+              <Nav />
               {children}
             </Col>
             <Col
