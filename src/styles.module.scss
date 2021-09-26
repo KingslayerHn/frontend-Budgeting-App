@@ -1,5 +1,6 @@
 $primary: #4e6ef5;
 $secondary: #fd6900;
+$third: #69b4ed;
 
 html * {
   font-size: 9 !important;
@@ -171,6 +172,27 @@ body {
     color: #fff;
   }
   .icon {
+    color: #fff;
+  }
+}
+
+// exit icons
+.exitIcon {
+  font-size: 30px;
+  color: #ff7400;
+}
+
+.iconContainer {
+  display: flex;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  transition: background-color ease 0.5s;
+}
+
+.iconContainer:hover {
+  background-color: $third;
+  .exitIcon {
     color: #fff;
   }
 }

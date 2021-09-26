@@ -3,19 +3,19 @@ import { Row, Col, Container } from 'react-bootstrap';
 import avatar from '../assets/avatar.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from '../components/Links';
-import Alert from '../components/Alert';
 import {
   BsGraphUp,
   BsBoxArrowInRight,
   BsBoxArrowInLeft,
   BiTransfer,
   FaUserFriends,
-  MdAccountBalance,
+  AiOutlineHome,
 } from 'react-icons/all';
 import { Redirect } from 'react-router-dom';
-
 import { logout } from '../redux/actions/auth.action';
-import Alerts from '../components/Alert';
+import Avatar from '../components/dashboard/Avatar';
+
+import styles from '../styles.module.scss';
 
 const Dashboard = ({ children }) => {
   const dispatch = useDispatch();
@@ -35,9 +35,9 @@ const Dashboard = ({ children }) => {
 
   const links = [
     {
-      label: 'Accounts',
+      label: 'Home',
       to: '/',
-      Image: <MdAccountBalance />,
+      Image: <AiOutlineHome />,
     },
     {
       label: 'Expenses',
@@ -128,27 +128,56 @@ const Dashboard = ({ children }) => {
         >
           <Row style={{ height: '100%' }}>
             <Col
-              xs={9}
+              xs={8}
               style={{
                 minHeight: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                padding: 40,
+                padding: 50,
               }}
             >
               bhola
             </Col>
             <Col
-              xs={3}
+              xs={4}
               style={{
                 borderLeft: '2px solid #F7F8FC',
-                minHeight: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                padding: 30,
+                marginTop: 50,
               }}
             >
-              como estas
+              <Container>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    borderBottom: '2px solid #F7F8FC',
+                    padding: 20,
+                  }}
+                >
+                  <Avatar
+                    data={{
+                      userName: `${user.firstName.split(' ')[0]} ${
+                        user.lastName.split(' ')[0]
+                      }`,
+                      image: avatar,
+                      w: 70,
+                      h: 70,
+                      email: user?.email,
+                      ft: 18,
+                      fe: 13,
+                    }}
+                  />
+
+                  <div
+                    className={styles.iconContainer}
+                    onClick={handleCloseSesion}
+                  >
+                    <BsBoxArrowInRight className={styles.exitIcon} />
+                  </div>
+                </div>
+              </Container>
             </Col>
           </Row>
         </div>
@@ -158,66 +187,3 @@ const Dashboard = ({ children }) => {
 };
 
 export default Dashboard;
-
-{
-  /* <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-              }}
-            >
-              <div
-                style={{
-                  backgroundImage: `url(${avatar})`,
-                  height: 150,
-                  borderRadius: '50%',
-                  width: 150,
-                  marginTop: 50,
-                  marginBottom: 10,
-                }}
-              />
-              <h2 style={{ color: '#ff9064', fontSize: 22 }}>{`${
-                user?.firstName.split(' ')[0]
-              } ${user?.lastName.split(' ')[0]}`}</h2>
-            </div>
-          </div>
-          <div
-            style={{
-              marginTop: 40,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexDirection: 'column',
-              fontFamily: 'Montserrat',
-            }}
-          >
-            {links.map((link) => (
-              <Link Image={link.Image} label={link.label} to={link.to} />
-            ))}
-          </div>
-          <div style={{ marginTop: 50 }}>
-            <button
-              style={{
-                backgroundColor: 'transparent',
-                outline: 'none',
-                color: '#fff',
-                width: '100%',
-                border: 'none',
-                fontSize: 20,
-                fontFamily: 'Montserrat',
-              }}
-              onClick={handleCloseSesion}
-            >
-              Close sesion
-            </button>
-          </div> */
-}
