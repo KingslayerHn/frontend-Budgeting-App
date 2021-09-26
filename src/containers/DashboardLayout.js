@@ -146,6 +146,7 @@ const Dashboard = ({ children }) => {
                 display: 'flex',
                 flexDirection: 'column',
                 padding: 50,
+                position: 'relative',
               }}
             >
               <Nav />

@@ -278,7 +278,6 @@ button {
 
 // search
 .search {
-  background-color: red;
   display: flex;
   flex: 1;
   outline: none !important;
@@ -300,12 +299,49 @@ button {
   justify-content: center;
   cursor: pointer;
   margin-left: 20px;
+  position: relative;
+
   .notificationIcon {
     color: #979899;
     font-size: 35px;
+    width: 40px;
+    border-radius: 50%;
+    height: 40px;
+    transition: background-color 1s ease;
   }
-  .notificationIcon:hover {
-    color: $primary;
+}
+
+.notificationPanel {
+  width: 350px;
+  height: 400px;
+  background-color: #f0f3f6;
+  box-shadow: 1px 0px 8px -1px rgba(145, 136, 142, 0.315);
+  position: absolute;
+  top: 100%;
+  z-index: 1000;
+  right: -20%;
+  animation: showNotifications ease 0.7s;
+  .notificationTriangleContainer {
+    background-color: #fff;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // to set triangle on notification panel
+  .notificationTriangleContainer:after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    margin-left: -50px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-bottom: solid 10px #fff;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
   }
 }
 
@@ -314,12 +350,22 @@ button {
 @keyframes addAccountIn {
   from {
     height: 50px;
-    opacity: 0;
-    background-color: transparent;
+    opacity: 0.5;
   }
 
   to {
+    opacity: 1;
     height: 250px;
+  }
+}
+@keyframes showNotifications {
+  from {
+    height: 50px;
+    opacity: 0.5;
+  }
+
+  to {
+    height: 400px;
     opacity: 1;
   }
 }

@@ -6,6 +6,7 @@ import expenses from './expenses.reducer';
 import incomes from './incomes.reducer';
 import transferences from './transferences.reducer';
 import references from './references.reducer';
+import ui from './ui.reducer';
 
 export default combineReducers({
   auth,
@@ -14,5 +15,6 @@ export default combineReducers({
   incomes,
   transferences,
   references,
+  ui,
   alerts,
 });
