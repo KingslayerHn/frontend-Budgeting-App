@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
     case ADD_ACCOUNT:
       return {
         ...state,
-        items: [...state.items, payload],
+        items: [payload, ...state.items],
       };
     case DELETE_ACCOUNT:
       return {

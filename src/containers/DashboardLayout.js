@@ -15,6 +15,7 @@ import {
 import { Redirect, useHistory } from 'react-router-dom';
 import { logout } from '../redux/actions/auth.action';
 import Avatar from '../components/dashboard/Avatar';
+import Alert from '../components/Alert';
 
 import styles from '../styles.module.scss';
 import Accounts from './Accounts';
@@ -198,7 +199,6 @@ const Dashboard = ({ children }) => {
                     display: 'flex',
                     flexDirection: 'row',
                     alignItems: 'center',
-                    backgroundColor: 'white',
                     padding: 10,
                     borderTopRightRadius: 20,
                   }}
@@ -211,7 +211,7 @@ const Dashboard = ({ children }) => {
                       cursor: 'pointer',
                     }}
                   />
-                  <h5 style={{ fontWeight: 400, color: '#D5DCE6' }}>
+                  <h5 style={{ fontWeight: 400, color: '#6a84f6' }}>
                     add account
                   </h5>
                 </div>
@@ -221,6 +221,7 @@ const Dashboard = ({ children }) => {
           </Row>
         </div>
       </section>
+      <Alert />
     </div>
   );
 };

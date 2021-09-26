@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { InputGroup, FormControl, Button } from 'react-bootstrap';
+import { InputGroup, FormControl, Button, Spinner } from 'react-bootstrap';
 import { CgClose } from 'react-icons/all';
 import { useDispatch } from 'react-redux';
 import { addAccount } from '../../redux/actions/account.action';
 import styles from '../../styles.module.scss';
-import NumberFormat from 'react-number-format';
 
 const AddAccount = ({ setAdd }) => {
   const dispatch = useDispatch();
@@ -12,22 +11,28 @@ const AddAccount = ({ setAdd }) => {
     amount: 0,
     description: '',
   });
+  const [loader, setLoader] = useState(false);
   const { description, amount } = formData;
+
+  const cleanValues = () => {
+    setFormData({
+      amount: 0,
+      description: '',
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoader(true);
     dispatch(addAccount({ amount, description }));
-    setAdd(false);
+    cleanValues();
+    setLoader(false);
   };
   const handleCloseAdd = () => {
     setAdd(false);
   };
   const handleChange = ({ target }) => {
-    if (target.name === 'amount') {
-      setFormData({ ...formData, [target.name]: parseFloat(target.value) });
-    } else {
-      setFormData({ ...formData, [target.name]: target.value });
-    }
+    setFormData({ ...formData, [target.name]: target.value });
   };
 
   return (
@@ -56,15 +61,23 @@ const AddAccount = ({ setAdd }) => {
             name="amount"
             value={amount}
             onChange={handleChange}
-            as={NumberFormat}
+            type="number"
           />
         </InputGroup>
         <div className={styles.buttonsAddAccount}>
           <Button
             onClick={handleSubmit}
-            disabled={description === '' || amount === ''}
+            disabled={description === '' || amount === '' || amount <= 0}
+            style={{ width: 70 }}
           >
-            Add
+            {loader ? (
+              <Spinner
+                animation="border"
+                style={{ fontSize: 8, width: 20, height: 20 }}
+              />
+            ) : (
+              'Add'
+            )}
           </Button>
 
           <CgClose

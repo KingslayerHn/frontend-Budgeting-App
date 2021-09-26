@@ -17,14 +17,17 @@ const Alerts = () => {
           bottom: 40,
           margin: 'auto',
           border: 'none',
-          backgroundColor: `${a.variant === 'danger' ? '#D3302F' : '#2E7D31'}`,
+          backgroundColor: `${a.variant === 'danger' ? '#D3302F' : '#6a84f6'}`,
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
           height: 'auto',
           color: '#fff',
-          padding: 12,
-          fontSize: 13,
+          padding: 20,
+          fontSize: 16,
+          fontWeight: 300,
+          borderTopLeftRadius: 0,
+          borderBottomLeftRadius: 0,
         }}
         className={styles.alerts}
       >
