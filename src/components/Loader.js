@@ -3,11 +3,20 @@ import { Spinner } from 'react-bootstrap';
 
 const Loader = () => {
   return (
-    <Spinner
-      variant="#ffff"
-      animation="border"
-      style={{ width: 20, height: 20 }}
-    />
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        minHeight: '100vh',
+      }}
+    >
+      <Spinner
+        animation="border"
+        style={{ width: 100, height: 100, color: '#fff' }}
+      />
+    </div>
   );
 };
 

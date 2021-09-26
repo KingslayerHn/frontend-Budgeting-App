@@ -21,50 +21,7 @@ const Accounts = () => {
     setModalDelete(true);
   };
 
-  return (
-    <Container>
-      <ModalAddAccount modal={modal} setModal={setModal} />
-      <ModalDeleteAccount modal={modalDelete} setModal={setModalDelete} />
-      <IoAddCircleSharp
-        style={{
-          position: 'absolute',
-          bottom: 50,
-          right: 80,
-          fontSize: 80,
-          color: '#fff',
-          cursor: 'pointer',
-        }}
-        onClick={handleOpenModal}
-      />
-      {items.length === 0 ? (
-        <h1
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            flex: 1,
-            height: '100vh',
-            color: '#fff',
-          }}
-        >
-          Not have account yet!!
-        </h1>
-      ) : (
-        <Row style={{ marginTop: 50 }}>
-          {items.map((item) => (
-            <Col xs={3} key={item._id}>
-              <ItemCard
-                {...item}
-                modal={modalDelete}
-                setModal={setModalDelete}
-                item={item}
-              />
-            </Col>
-          ))}
-        </Row>
-      )}
-    </Container>
-  );
+  return <Container>account</Container>;
 };
 
 export default Accounts;

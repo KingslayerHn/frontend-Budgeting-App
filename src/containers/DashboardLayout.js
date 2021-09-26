@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
 import avatar from '../assets/avatar.svg';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,7 +11,7 @@ import {
   FaUserFriends,
   AiOutlineHome,
 } from 'react-icons/all';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { logout } from '../redux/actions/auth.action';
 import Avatar from '../components/dashboard/Avatar';
 
@@ -19,6 +19,7 @@ import styles from '../styles.module.scss';
 
 const Dashboard = ({ children }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { isAuth } = useSelector((state) => state.auth);
   const {
@@ -31,6 +32,7 @@ const Dashboard = ({ children }) => {
 
   const handleCloseSesion = () => {
     dispatch(logout());
+    history.push('/login');
   };
 
   const links = [
@@ -136,7 +138,7 @@ const Dashboard = ({ children }) => {
                 padding: 50,
               }}
             >
-              bhola
+              {children}
             </Col>
             <Col
               xs={4}
