@@ -147,7 +147,7 @@ const Dashboard = ({ children }) => {
                 padding: 50,
               }}
             >
-              {/* {children} */}
+              {children}
             </Col>
             <Col
               xs={4}

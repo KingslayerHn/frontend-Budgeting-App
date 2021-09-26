@@ -221,6 +221,7 @@ button {
     padding: 10px 25px 10px 25px;
     cursor: pointer;
     transition: background-color ease 0.7s;
+    animation: showNewAccount ease 0.7s;
   }
   .account:hover {
     background-color: #eef1fdb7;
@@ -283,6 +284,19 @@ button {
 
   to {
     height: 250px;
+    opacity: 1;
+  }
+}
+
+// show new account
+@keyframes showNewAccount {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
     opacity: 1;
   }
 }

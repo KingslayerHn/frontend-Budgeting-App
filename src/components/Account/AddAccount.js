@@ -66,6 +66,7 @@ const AddAccount = ({ setAdd }) => {
         </InputGroup>
         <div className={styles.buttonsAddAccount}>
           <Button
+            type="submit"
             onClick={handleSubmit}
             disabled={description === '' || amount === '' || amount <= 0}
             style={{ width: 70 }}

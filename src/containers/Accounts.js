@@ -10,7 +10,9 @@ const Accounts = () => {
   return (
     <>
       {items.length > 0 ? (
-        items.map((item) => <AccountItem {...item} key={item._id} />)
+        items.map((item) => (
+          <AccountItem {...item} key={item._id} item={item} />
+        ))
       ) : (
         <div
           style={{
