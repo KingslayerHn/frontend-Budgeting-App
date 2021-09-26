@@ -1,27 +1,48 @@
-import React, { useState } from 'react';
-import { IoAddCircleSharp } from 'react-icons/all';
-import { Container, Col, Row } from 'react-bootstrap';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import ModalAddAccount from '../components/ModalAddAccount';
-import ItemCard from '../components/ItemAccountCard';
-import ModalDeleteAccount from '../components/ModalDeleteAccount';
+import AccountItem from '../components/dashboard/AccountItem';
 
 const Accounts = () => {
   const { items } = useSelector((state) => {
     return state.accounts;
   });
 
-  const [modal, setModal] = useState(false);
-  const [modalDelete, setModalDelete] = useState(false);
+  const a = [
+    {
+      title: 'Salutec',
+      amount: 2000,
+    },
+    {
+      title: 'Banco de occidente',
+      amount: 4000,
+    },
+    {
+      title: 'Salutec',
+      amount: 2000,
+    },
+  ];
 
-  const handleOpenModal = () => {
-    setModal(true);
-  };
-  const handleOpenModalDelete = () => {
-    setModalDelete(true);
-  };
-
-  return <Container>account</Container>;
+  return (
+    <>
+      {a.length > 0 ? (
+        a.map((item) => <AccountItem {...item} />)
+      ) : (
+        <div
+          style={{
+            display: 'flex',
+            padding: 30,
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100%',
+          }}
+        >
+          <h2 style={{ fontWeight: 200, color: '#69b4ed' }}>
+            not have an account yet. add one!!
+          </h2>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default Accounts;

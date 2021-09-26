@@ -10,12 +10,14 @@ import {
   BiTransfer,
   FaUserFriends,
   AiOutlineHome,
+  AiFillPlusCircle,
 } from 'react-icons/all';
 import { Redirect, useHistory } from 'react-router-dom';
 import { logout } from '../redux/actions/auth.action';
 import Avatar from '../components/dashboard/Avatar';
 
 import styles from '../styles.module.scss';
+import Accounts from './Accounts';
 
 const Dashboard = ({ children }) => {
   const dispatch = useDispatch();
@@ -122,13 +124,13 @@ const Dashboard = ({ children }) => {
         <div
           style={{
             borderRadius: 60,
-            backgroundColor: '#fff',
+            backgroundColor: '#F7F8FC',
             width: '98%',
             height: '98%',
             border: 'none',
           }}
         >
-          <Row style={{ height: '100%' }}>
+          <Row style={{ height: '100%' }} className="gx-0">
             <Col
               xs={8}
               style={{
@@ -138,48 +140,58 @@ const Dashboard = ({ children }) => {
                 padding: 50,
               }}
             >
-              {children}
+              {/* {children} */}
             </Col>
             <Col
               xs={4}
               style={{
-                borderLeft: '2px solid #F7F8FC',
                 display: 'flex',
                 flexDirection: 'column',
-                marginTop: 50,
+                padding: 0,
+                paddingTop: 50,
+                borderLeft: '2px solid #f1f1f1',
               }}
             >
-              <Container>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    borderBottom: '2px solid #F7F8FC',
-                    padding: 20,
+              <div className={styles.boxLine}>
+                <Avatar
+                  data={{
+                    userName: `${user.firstName.split(' ')[0]} ${
+                      user.lastName.split(' ')[0]
+                    }`,
+                    image: avatar,
+                    w: 70,
+                    h: 70,
+                    email: user?.email,
+                    ft: 18,
+                    fe: 13,
                   }}
-                >
-                  <Avatar
-                    data={{
-                      userName: `${user.firstName.split(' ')[0]} ${
-                        user.lastName.split(' ')[0]
-                      }`,
-                      image: avatar,
-                      w: 70,
-                      h: 70,
-                      email: user?.email,
-                      ft: 18,
-                      fe: 13,
-                    }}
-                  />
+                />
 
-                  <div
-                    className={styles.iconContainer}
-                    onClick={handleCloseSesion}
-                  >
-                    <BsBoxArrowInRight className={styles.exitIcon} />
-                  </div>
+                <div
+                  className={styles.iconContainer}
+                  onClick={handleCloseSesion}
+                >
+                  <BsBoxArrowInRight className={styles.exitIcon} />
                 </div>
-              </Container>
+              </div>
+              <div className={styles.accountBoxLines}>
+                <Accounts />
+              </div>
+              <div
+                style={{ display: 'flex', alignItems: 'center', padding: 40 }}
+              >
+                <AiFillPlusCircle
+                  style={{
+                    color: '#4e6ef5',
+                    fontSize: 60,
+                    marginRight: 20,
+                    cursor: 'pointer',
+                  }}
+                />
+                <h5 style={{ fontWeight: 400, color: '#D5DCE6' }}>
+                  add account
+                </h5>
+              </div>
             </Col>
           </Row>
         </div>
