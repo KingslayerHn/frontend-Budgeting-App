@@ -1,9 +1,16 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { OPEN_MODAL_NOTIFICATION, OPEN_MODAL_EDIT_PROFILE } from '../types';
+import {
+  OPEN_MODAL_NOTIFICATION,
+  OPEN_MODAL_EDIT_PROFILE,
+  MODAL_DELETE_ACCOUNT,
+  MODAL_OPEN_UPDATE_ACCOUNT,
+} from '../types';
 
 const initialState = {
   modalNotifications: false,
   modalEditProfile: false,
+  modalDeleteAccount: false,
+  modalUpdateAccount: false,
 };
 
 export default (state = initialState, action) => {
@@ -18,6 +25,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         modalEditProfile: payload,
+      };
+    case MODAL_DELETE_ACCOUNT:
+      return {
+        ...state,
+        modalDeleteAccount: payload,
+      };
+    case MODAL_OPEN_UPDATE_ACCOUNT:
+      return {
+        ...state,
+        modalUpdateAccount: payload,
       };
 
     default:

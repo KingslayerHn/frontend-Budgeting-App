@@ -230,7 +230,7 @@ const ModalEditProfile = ({ user }) => {
         <Row>
           <Col>
             <Button
-              variant="secondary"
+              variant="primary"
               onClick={handlePasswordUpdate}
               disabled={
                 password.trim() <= 0 ||

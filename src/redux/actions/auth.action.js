@@ -144,7 +144,7 @@ export const updateProfile =
         dispatch(
           setAlert({
             variant: 'success',
-            message: 'user Updated!',
+            message: 'user Update success!',
           })
         );
       }

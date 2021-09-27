@@ -1,22 +1,29 @@
 .btn-primary {
   background-color: #4e6ef5 !important;
-  border: none;
-  border-radius: 30px;
+  border-radius: 30px !important;
   width: 100px;
 }
 .btn-secondary {
   background-color: #fd6900 !important;
-  border: none;
-  border-radius: 30px;
+  border-radius: 30px !important;
   width: 100px;
 }
 input:focus {
   box-shadow: none !important;
+  color: #979899 !important;
 }
 select:focus {
   box-shadow: none !important;
 }
 
 textarea:focus {
+  box-shadow: none !important;
+}
+
+.btn-secondary:focus {
+  box-shadow: none !important;
+}
+
+.btn-primary:focus {
   box-shadow: none !important;
 }

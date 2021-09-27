@@ -51,6 +51,7 @@ const AddAccount = ({ setAdd }) => {
             name="description"
             value={description}
             onChange={handleChange}
+            maxLength={22}
           />
         </InputGroup>
         <InputGroup className="mb-3">

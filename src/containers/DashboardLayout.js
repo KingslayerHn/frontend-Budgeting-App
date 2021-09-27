@@ -21,6 +21,8 @@ import styles from '../styles.module.scss';
 import Accounts from './Accounts';
 import AddAccount from '../components/Account/AddAccount';
 import Nav from '../components/dashboard/Nav';
+import DeleteAccount from '../components/Account/DeleteAccount';
+import UpdateAccount from '../components/Account/UpdateAccount';
 
 const Dashboard = ({ children }) => {
   const dispatch = useDispatch();
@@ -28,6 +30,9 @@ const Dashboard = ({ children }) => {
   const [add, setAdd] = useState(false);
 
   const { isAuth } = useSelector((state) => state.auth);
+  const { modalDeleteAccount, modalUpdateAccount } = useSelector(
+    (state) => state.ui
+  );
   const {
     auth: { user },
   } = useSelector((state) => state);
@@ -225,6 +230,8 @@ const Dashboard = ({ children }) => {
         </div>
       </section>
       <Alert />
+      {modalDeleteAccount && <DeleteAccount />}
+      {modalUpdateAccount && <UpdateAccount />}
     </div>
   );
 };
