@@ -1,6 +1,7 @@
 $primary: #4e6ef5;
 $secondary: #fd6900;
 $third: #69b4ed;
+$fourth: #3d6586;
 
 html * {
   font-size: 9 !important;
@@ -12,8 +13,9 @@ body {
   height: 100vh;
   font-size: 9 !important;
 }
-input:focus {
-  box-shadow: none !important;
+
+h5 {
+  color: $third !important;
 }
 button {
   background-color: $primary !important;
@@ -293,11 +295,11 @@ button {
     color: $third !important;
   }
 }
+// notification
 .notificationIconContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   margin-left: 20px;
   position: relative;
 
@@ -310,6 +312,18 @@ button {
     transition: background-color 1s ease;
   }
 }
+.containerItemNotification {
+  display: flex;
+  padding: 15px;
+  align-items: center;
+  border-bottom: 1px solid #e0e6ea;
+  transition: background-color ease 0.7s;
+  cursor: pointer;
+}
+.containerItemNotification:hover {
+  background-color: #d6deff34;
+  color: #fff;
+}
 
 .notificationPanel {
   width: 350px;
@@ -321,13 +335,15 @@ button {
   z-index: 1000;
   right: -20%;
   animation: showNotifications ease 0.7s;
+
   .notificationTriangleContainer {
     background-color: #fff;
-    position: relative;
     padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 80px;
+    border-bottom: 1px solid #97989946;
   }
 
   // to set triangle on notification panel
@@ -345,6 +361,15 @@ button {
   }
 }
 
+// user Profile
+.profileContainer {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
 // animation add acccount
 
 @keyframes addAccountIn {
@@ -360,12 +385,10 @@ button {
 }
 @keyframes showNotifications {
   from {
-    height: 50px;
-    opacity: 0.5;
+    opacity: 0;
   }
 
   to {
-    height: 400px;
     opacity: 1;
   }
 }

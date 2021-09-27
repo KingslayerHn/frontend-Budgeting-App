@@ -1,6 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import Profile from '../components/home/Profile';
+import ModalEditProfile from '../components/home/ModalEditProfile';
 
 const Home = () => {
+  const { modalEditProfile } = useSelector((state) => state.ui);
+  const { user } = useSelector((state) => state.auth);
   return (
     <div
       style={{
@@ -11,14 +16,9 @@ const Home = () => {
         justifyContent: 'start',
       }}
     >
-      <h1
-        style={{
-          fontWeight: 300,
-          color: '#69b4ed',
-        }}
-      >
-        Coming soon !!
-      </h1>
+      <h5 style={{ color: '#527491' }}>Profile</h5>
+      {!modalEditProfile && <Profile />}
+      {modalEditProfile && <ModalEditProfile user={user} />}
     </div>
   );
 };

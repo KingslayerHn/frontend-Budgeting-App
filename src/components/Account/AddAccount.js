@@ -70,6 +70,7 @@ const AddAccount = ({ setAdd }) => {
             onClick={handleSubmit}
             disabled={description === '' || amount === '' || amount <= 0}
             style={{ width: 70 }}
+            variant="primary"
           >
             {loader ? (
               <Spinner
