@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteAccount } from '../../redux/actions/account.action';
 import { getAccountReference } from '../../redux/actions/references.action';
 import { openModalDeleteAccount } from '../../redux/actions/ui.action';
+import { CgClose } from 'react-icons/all';
 
 const DeleteAccount = () => {
   const dispatch = useDispatch();
@@ -39,9 +40,13 @@ const DeleteAccount = () => {
         }}
         onClose={handleOpenModalDeleteAccount}
       >
-        <Toast.Header>
+        <Toast.Header closeButton={false}>
           <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
           <strong className="me-auto">Delete Account</strong>
+          <CgClose
+            onClick={handleOpenModalDeleteAccount}
+            style={{ cursor: 'pointer' }}
+          />
         </Toast.Header>
         <Toast.Body style={{ backgroundColor: '#fff', padding: 20 }}>
           <h5>Are you sure to delete this account?</h5>

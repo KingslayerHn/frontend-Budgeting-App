@@ -9,6 +9,7 @@ import {
 } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { openModalUpdateAccount } from '../../redux/actions/ui.action';
+import { CgClose } from 'react-icons/all';
 
 const UpdateAccount = () => {
   const dispatch = useDispatch();
@@ -42,9 +43,13 @@ const UpdateAccount = () => {
         }}
         onClose={closeModalupdateAccount}
       >
-        <Toast.Header>
+        <Toast.Header closeButton={false}>
           <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
           <strong className="me-auto">Update Account</strong>
+          <CgClose
+            onClick={closeModalupdateAccount}
+            style={{ cursor: 'pointer' }}
+          />
         </Toast.Header>
         <Toast.Body style={{ backgroundColor: '#fff', padding: 20 }}>
           <Row className={['gx-0']}>
