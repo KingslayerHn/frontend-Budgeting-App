@@ -58,6 +58,12 @@ const ModalEditProfile = ({ user }) => {
         newPass,
       })
     );
+    setFormData({
+      ...formData,
+      password: '',
+      newPass: '',
+      repeatPass: '',
+    });
   };
 
   return (

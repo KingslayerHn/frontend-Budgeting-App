@@ -2,7 +2,7 @@ $primary: #4e6ef5;
 $secondary: #fd6900;
 $third: #69b4ed;
 $fourth: #3d6586;
-
+$five: #6a84f5;
 html * {
   font-size: 9 !important;
 }
@@ -227,14 +227,21 @@ button {
     cursor: pointer;
     transition: background-color ease 0.7s;
     animation: showNewAccount ease 0.7s;
+    margin-top: 1px;
+    margin-bottom: 1px;
   }
   .account:hover {
-    background-color: #eef1fdb7;
+    background-color: $five;
+    div h6 {
+      color: #fff !important;
+    }
+    div {
+      color: #fff !important;
+    }
+    .icon {
+      color: #fff !important;
+    }
   }
-}
-
-.selectedAccount {
-  background-color: #eef1fdb7 !important;
 }
 
 // create lines on user box

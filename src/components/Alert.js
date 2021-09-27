@@ -24,7 +24,7 @@ const Alerts = () => {
           height: 'auto',
           color: '#fff',
           padding: 20,
-          fontSize: 16,
+          fontSize: 13,
           fontWeight: 300,
           borderTopLeftRadius: 0,
           borderBottomLeftRadius: 0,
