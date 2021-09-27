@@ -158,3 +158,38 @@ export const updateProfile =
       );
     }
   };
+
+export const updatePassword =
+  ({ password, newPass }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const body = JSON.stringify({
+      password,
+      newPass,
+    });
+
+    try {
+      const res = await axios.post('/api/users/update/password', body, config);
+      if (res.status === 200) {
+        dispatch(
+          setAlert({
+            variant: 'success',
+            message: 'password updated!!',
+          })
+        );
+      }
+    } catch (err) {
+      console.log(err);
+      dispatch(
+        setAlert({
+          variant: 'danger',
+          message: err.response.data.message,
+        })
+      );
+    }
+  };
