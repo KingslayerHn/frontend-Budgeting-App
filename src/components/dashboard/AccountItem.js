@@ -10,7 +10,7 @@ const AccountItem = ({ description, amount, item }) => {
   const { accountRef } = useSelector((state) => state.references);
 
   const handleAddAccountReference = () => {
-    if (accountRef) {
+    if (accountRef?._id === item._id) {
       dispatch(getAccountReference(null));
     } else {
       dispatch(getAccountReference(item));
