@@ -11,6 +11,7 @@ import { TiArrowBack } from 'react-icons/all';
 import styles from '../../styles.module.scss';
 import { openModalEditProfile } from '../../redux/actions/ui.action';
 import { useDispatch } from 'react-redux';
+import { updateProfile } from '../../redux/actions/auth.action';
 
 const ModalEditProfile = ({ user }) => {
   const dispatch = useDispatch();
@@ -47,7 +48,9 @@ const ModalEditProfile = ({ user }) => {
     setFormData({ ...formData, [target.name]: target.value });
   };
 
-  const handleUpdate = () => {};
+  const handleUpdate = () => {
+    dispatch(updateProfile(formData));
+  };
   const handlePasswordUpdate = () => {};
 
   return (
@@ -151,7 +154,16 @@ const ModalEditProfile = ({ user }) => {
           </Row>
           <Row>
             <Col>
-              <Button onClick={handleUpdate}>Update</Button>
+              <Button
+                disabled={
+                  email.trim() < 3 ||
+                  firstName.trim() < 3 ||
+                  lastName.trim() < 3
+                }
+                onClick={handleUpdate}
+              >
+                Update
+              </Button>
             </Col>
           </Row>
         </Form>

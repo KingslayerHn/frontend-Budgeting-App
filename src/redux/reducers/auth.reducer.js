@@ -7,6 +7,7 @@ import {
   AUTH_ERROR,
   LOGIN_FAIL,
   LOGOUT,
+  UPDATE_USER,
 } from '../types';
 
 const initialState = {
@@ -32,6 +33,18 @@ export default (state = initialState, action) => {
         isAuth: true,
         userLoaded: true,
         user: payload,
+      };
+    case UPDATE_USER:
+      return {
+        ...state,
+        user: {
+          firstName: payload.firstName,
+          lastName: payload.lastName,
+          genre: payload.genre,
+          email: payload.email,
+          bio: payload.bio,
+          profession: payload.profession,
+        },
       };
     case REGISTER_FAIL:
     case AUTH_ERROR:

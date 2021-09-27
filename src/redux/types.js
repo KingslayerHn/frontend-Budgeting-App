@@ -6,6 +6,7 @@ export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
+export const UPDATE_USER = 'UPDATE_USER';
 
 // add alerts
 export const SET_ALERT = 'SET_ALERT';

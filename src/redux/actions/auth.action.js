@@ -7,6 +7,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  UPDATE_USER,
 } from '../types';
 import setAuthToken from '../../utils/auth.token';
 import { setAlert } from './alerts.action';
@@ -114,3 +115,46 @@ export const logout = () => (dispatch) => {
     type: LOGOUT,
   });
 };
+
+export const updateProfile =
+  ({ email, bio, profession, firstName, lastName, genre }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const body = JSON.stringify({
+      email,
+      bio,
+      profession,
+      firstName,
+      lastName,
+      genre,
+    });
+
+    try {
+      const res = await axios.put('/api/users/update', body, config);
+      dispatch({
+        type: UPDATE_USER,
+        payload: res.data,
+      });
+      if (res.status === 200) {
+        dispatch(
+          setAlert({
+            variant: 'success',
+            message: 'user Updated!',
+          })
+        );
+      }
+    } catch (err) {
+      console.log(err);
+      dispatch(
+        setAlert({
+          variant: 'danger',
+          message: 'user cannot be updated',
+        })
+      );
+    }
+  };
