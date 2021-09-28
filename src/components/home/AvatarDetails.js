@@ -6,6 +6,7 @@ import {
   AiOutlineMail,
   IoMaleFemaleOutline,
 } from 'react-icons/all';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const AvatarDetails = () => {
   const { user } = useSelector((state) => state.auth);
@@ -18,15 +19,24 @@ const AvatarDetails = () => {
         padding: 40,
       }}
     >
-      <div
-        style={{
-          backgroundImage: `url(${avatar})`,
-          borderRadius: '50%',
-          backgroundRepeat: 'no-repeat',
-          width: 180,
-          height: 180,
-        }}
-      />
+      <OverlayTrigger
+        placement="bottom"
+        overlay={<Tooltip id="tooltip-disabled">update</Tooltip>}
+      >
+        <span className="d-inline-block">
+          <div
+            style={{
+              backgroundImage: `url(${avatar})`,
+              borderRadius: '50%',
+              backgroundRepeat: 'no-repeat',
+              width: 180,
+              height: 180,
+              cursor: 'pointer',
+            }}
+          />
+        </span>
+      </OverlayTrigger>
+
       <div style={{ paddingTop: 25 }}>
         <div style={{ display: 'flex', alignSelf: 'start', marginBottom: 5 }}>
           <FaUserAstronaut
