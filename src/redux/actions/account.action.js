@@ -5,6 +5,8 @@ import {
   GET_ACCOUNTS,
   DEBIT,
   ADD,
+  UPDATE_ACCOUNT,
+  GET_ACCOUNT_REFERENCE,
 } from '../types';
 import { setAlert as createAlert } from './alerts.action';
 
@@ -65,7 +67,7 @@ export const deleteAccount = (id) => async (dispatch) => {
     });
     dispatch(
       createAlert({
-        message: 'Account deleted!!',
+        message: 'the account was deleted!!',
         variant: 'success',
       })
     );
@@ -107,6 +109,42 @@ export const add =
     try {
       const res = await axios.put(`/api/accounts/${id}`, body, config);
       dispatch({ type: ADD, payload: res.data });
+      if (res.status === 200) {
+        dispatch(
+          createAlert({
+            message: 'the account was added!!',
+            variant: 'success',
+          })
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+export const updateAccount =
+  ({ id, description }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const body = JSON.stringify({ description });
+
+    try {
+      const res = await axios.put(`/api/accounts/update/${id}`, body, config);
+      dispatch({ type: UPDATE_ACCOUNT, payload: res.data });
+      dispatch({ type: GET_ACCOUNT_REFERENCE, payload: res.data });
+      if (res.status === 200) {
+        dispatch(
+          createAlert({
+            message: 'the account was updated!!',
+            variant: 'success',
+          })
+        );
+      }
     } catch (error) {
       console.log(error);
     }

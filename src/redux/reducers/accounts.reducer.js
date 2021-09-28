@@ -5,6 +5,7 @@ import {
   GET_ACCOUNTS,
   DEBIT,
   ADD,
+  UPDATE_ACCOUNT,
 } from '../types';
 const initialState = {
   items: [],
@@ -27,6 +28,20 @@ export default (state = initialState, action) => {
             return {
               ...item,
               amount: payload.amount,
+            };
+          }
+          return item;
+        }),
+      };
+
+    case UPDATE_ACCOUNT:
+      return {
+        ...state,
+        items: state.items.map((item) => {
+          if (item._id === payload._id) {
+            return {
+              ...item,
+              description: payload.description,
             };
           }
           return item;

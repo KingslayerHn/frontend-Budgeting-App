@@ -18,6 +18,7 @@ export const GET_ACCOUNTS = 'GET_ACCOUNTS';
 export const DELETE_ACCOUNT = 'DELETE_ACCOUNT';
 export const DEBIT = 'DEBIT';
 export const ADD = 'ADD';
+export const UPDATE_ACCOUNT = 'UPDATE_ACCOUNT';
 
 // expenses
 export const ADD_EXPENSES = 'ADD_EXPENSES';

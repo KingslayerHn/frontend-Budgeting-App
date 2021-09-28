@@ -27,6 +27,7 @@ const AddAccount = ({ setAdd }) => {
     dispatch(addAccount({ amount, description }));
     cleanValues();
     setLoader(false);
+    setAdd(false);
   };
   const handleCloseAdd = () => {
     setAdd(false);

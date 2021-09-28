@@ -10,20 +10,22 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { openModalUpdateAccount } from '../../redux/actions/ui.action';
 import { CgClose } from 'react-icons/all';
+import { updateAccount } from '../../redux/actions/account.action';
 
 const UpdateAccount = () => {
   const dispatch = useDispatch();
   const { accountRef } = useSelector((state) => state.references);
+  const [description, setDescription] = useState(accountRef?.description);
+  const { modalUpdateAcccount } = useSelector((state) => state.ui);
 
   const closeModalupdateAccount = () => {
     dispatch(openModalUpdateAccount(false));
   };
   const handleUpdateAccount = () => {
-    // TODO: update account
+    dispatch(updateAccount({ id: accountRef._id, description }));
+    dispatch(openModalUpdateAccount(false));
   };
 
-  const [description, setDescription] = useState(accountRef?.description);
-  const { modalUpdateAcccount } = useSelector((state) => state.ui);
   return (
     <div
       style={{
@@ -72,6 +74,7 @@ const UpdateAccount = () => {
               variant="primary"
               style={{ margin: 5 }}
               onClick={handleUpdateAccount}
+              disabled={description.trim() <= 3}
             >
               update
             </Button>
