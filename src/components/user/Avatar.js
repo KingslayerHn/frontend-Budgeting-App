@@ -15,7 +15,6 @@ const Avatar = ({ size, cursor, onClick, shadow }) => {
           : `${tempAvatar}`
       }
       round
-      // style={{ cursor: cursor }}
       style={{
         cursor: cursor,
         boxShadow: shadow && '-10px -10px 0px -2px #4e6ef5',

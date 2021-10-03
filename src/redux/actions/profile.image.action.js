@@ -22,6 +22,12 @@ export const addProfilImage = (file, fileName) => async (dispatch) => {
       await axios.delete(`/api/image/profile/${fileName}`);
     }
     dispatch(openModalUpdateUserImageProfile(false));
+    dispatch(
+      createAlert({
+        message: 'Was updated profile image!!',
+        variant: 'success',
+      })
+    );
   } catch (error) {
     console.log(error);
     dispatch(
