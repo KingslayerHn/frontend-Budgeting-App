@@ -6,7 +6,14 @@ $five: #6a84f5;
 html * {
   font-size: 9 !important;
 }
-
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input:focus {
+  outline: none;
+}
 body {
   background-color: $primary !important;
   width: 100vw;
@@ -30,9 +37,9 @@ button {
 .login {
   display: flex;
   flex-direction: column;
-  width: 70%;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  justify-content: start;
+  align-items: start;
   input {
     border-radius: 20px;
     width: 100%;

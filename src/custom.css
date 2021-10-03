@@ -8,6 +8,13 @@
   border-radius: 30px !important;
   width: 100px;
 }
+.btn-light {
+  background-color: transparent !important;
+  border-radius: 30px !important;
+  padding: 0;
+  margin: 0;
+}
+
 input:focus {
   box-shadow: none !important;
   color: #979899 !important;
@@ -25,5 +32,9 @@ textarea:focus {
 }
 
 .btn-primary:focus {
+  box-shadow: none !important;
+}
+
+.btn-light:focus {
   box-shadow: none !important;
 }

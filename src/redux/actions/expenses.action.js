@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { ADD_EXPENSES, GET_EXPENCES } from '../types';
 import { debit } from './account.action';
+import { setAlert as createAlert } from './alerts.action';
+import { openModalAddExpense } from './ui.action';
 
 export const getExpenses = () => async (dispatch) => {
   try {
@@ -43,6 +45,13 @@ export const addExpense =
         payload: res.data,
       });
       dispatch(debit({ amount: amountAccount - tempAmount, id: id }));
+      dispatch(openModalAddExpense(false));
+      dispatch(
+        createAlert({
+          message: `Expence: ${description} added succefully!!`,
+          variant: 'success',
+        })
+      );
     } catch (err) {
       console.log(err.response);
     }
