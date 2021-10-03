@@ -1,14 +1,22 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import avatar from '../../assets/avatar.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import tempAvatar from '../../assets/avatar.svg';
 import {
   FaUserAstronaut,
   AiOutlineMail,
   IoMaleFemaleOutline,
 } from 'react-icons/all';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { openModalUpdateUserImageProfile } from '../../redux/actions/ui.action';
+import Avatar from '../user/Avatar';
 
 const AvatarDetails = () => {
   const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const handleOpenModalUpdateImageProfile = () => {
+    dispatch(openModalUpdateUserImageProfile(true));
+  };
   return (
     <div
       style={{
@@ -18,15 +26,20 @@ const AvatarDetails = () => {
         padding: 40,
       }}
     >
-      <div
-        style={{
-          backgroundImage: `url(${avatar})`,
-          borderRadius: '50%',
-          backgroundRepeat: 'no-repeat',
-          width: 180,
-          height: 180,
-        }}
-      />
+      <OverlayTrigger
+        placement="bottom"
+        overlay={<Tooltip id="tooltip-disabled">update</Tooltip>}
+      >
+        <span className="d-inline-block">
+          <Avatar
+            size={200}
+            cursor={'pointer'}
+            onClick={handleOpenModalUpdateImageProfile}
+            shadow
+          />
+        </span>
+      </OverlayTrigger>
+
       <div style={{ paddingTop: 25 }}>
         <div style={{ display: 'flex', alignSelf: 'start', marginBottom: 5 }}>
           <FaUserAstronaut

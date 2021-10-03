@@ -23,6 +23,7 @@ import AddAccount from '../components/Account/AddAccount';
 import Nav from '../components/dashboard/Nav';
 import DeleteAccount from '../components/Account/DeleteAccount';
 import UpdateAccount from '../components/Account/UpdateAccount';
+import ModalUserAvatar from '../components/user/ModalUserAvatar';
 
 const Dashboard = ({ children }) => {
   const dispatch = useDispatch();
@@ -30,9 +31,8 @@ const Dashboard = ({ children }) => {
   const [add, setAdd] = useState(false);
 
   const { isAuth } = useSelector((state) => state.auth);
-  const { modalDeleteAccount, modalUpdateAccount } = useSelector(
-    (state) => state.ui
-  );
+  const { modalDeleteAccount, modalUpdateAccount, modalUpdateImageProfile } =
+    useSelector((state) => state.ui);
   const {
     auth: { user },
   } = useSelector((state) => state);
@@ -232,6 +232,7 @@ const Dashboard = ({ children }) => {
       <Alert />
       {modalDeleteAccount && <DeleteAccount />}
       {modalUpdateAccount && <UpdateAccount />}
+      {modalUpdateImageProfile && <ModalUserAvatar />}
     </div>
   );
 };

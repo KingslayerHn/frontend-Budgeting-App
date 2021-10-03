@@ -8,6 +8,7 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   UPDATE_USER,
+  UPDATE_USER_PROFILE_IMAGE,
 } from '../types';
 
 const initialState = {
@@ -38,6 +39,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         user: {
+          ...state.user,
           firstName: payload.firstName,
           lastName: payload.lastName,
           genre: payload.genre,
@@ -46,6 +48,15 @@ export default (state = initialState, action) => {
           profession: payload.profession,
         },
       };
+    case UPDATE_USER_PROFILE_IMAGE: {
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          avatar: payload,
+        },
+      };
+    }
     case REGISTER_FAIL:
     case AUTH_ERROR:
     case LOGIN_FAIL:
