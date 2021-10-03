@@ -4,6 +4,7 @@ import {
   OPEN_MODAL_EDIT_PROFILE,
   MODAL_DELETE_ACCOUNT,
   MODAL_OPEN_UPDATE_ACCOUNT,
+  OPEN_MODAL_UPDATE_USER_IMAGE,
 } from '../types';
 
 const initialState = {
@@ -11,6 +12,7 @@ const initialState = {
   modalEditProfile: false,
   modalDeleteAccount: false,
   modalUpdateAccount: false,
+  modalUpdateImageProfile: true,
 };
 
 export default (state = initialState, action) => {
@@ -35,6 +37,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         modalUpdateAccount: payload,
+      };
+    case OPEN_MODAL_UPDATE_USER_IMAGE:
+      return {
+        ...state,
+        modalUpdateImageProfile: payload,
       };
 
     default:
