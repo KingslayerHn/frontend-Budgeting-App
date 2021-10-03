@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import avatar from '../../assets/avatar.svg';
+import tempAvatar from '../../assets/avatar.svg';
 import {
   FaUserAstronaut,
   AiOutlineMail,
@@ -8,6 +8,7 @@ import {
 } from 'react-icons/all';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { openModalUpdateUserImageProfile } from '../../redux/actions/ui.action';
+import Avatar from '../user/Avatar';
 
 const AvatarDetails = () => {
   const { user } = useSelector((state) => state.auth);
@@ -30,16 +31,11 @@ const AvatarDetails = () => {
         overlay={<Tooltip id="tooltip-disabled">update</Tooltip>}
       >
         <span className="d-inline-block">
-          <div
-            style={{
-              backgroundImage: `url(${avatar})`,
-              borderRadius: '50%',
-              backgroundRepeat: 'no-repeat',
-              width: 180,
-              height: 180,
-              cursor: 'pointer',
-            }}
+          <Avatar
+            size={200}
+            cursor={'pointer'}
             onClick={handleOpenModalUpdateImageProfile}
+            shadow
           />
         </span>
       </OverlayTrigger>

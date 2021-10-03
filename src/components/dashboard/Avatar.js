@@ -1,4 +1,5 @@
 import React from 'react';
+import A from '../user/Avatar';
 
 const Avatar = ({ data: { image, email, userName, w, h, ft, fe } }) => {
   return (
@@ -10,15 +11,7 @@ const Avatar = ({ data: { image, email, userName, w, h, ft, fe } }) => {
         flex: 1,
       }}
     >
-      <div
-        style={{
-          backgroundImage: `url(${image})`,
-          borderRadius: '50%',
-          backgroundRepeat: 'no-repeat',
-          width: w,
-          height: h,
-        }}
-      />
+      <A size={70} />
       <div
         style={{
           display: 'flex',

@@ -7,6 +7,7 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const UPDATE_USER = 'UPDATE_USER';
+export const UPDATE_USER_PROFILE_IMAGE = 'UPDATE_USER_PROFILE_IMAGE';
 
 // add alerts
 export const SET_ALERT = 'SET_ALERT';

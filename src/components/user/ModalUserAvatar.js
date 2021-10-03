@@ -1,24 +1,28 @@
 import React, { useState } from 'react';
-import { Toast, Row, Button } from 'react-bootstrap';
+import { Toast, Button, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { CgClose } from 'react-icons/all';
 import { openModalUpdateUserImageProfile } from '../../redux/actions/ui.action';
 import Avatar from 'react-avatar-edit';
+import { addProfilImage } from '../../redux/actions/profile.image.action';
 
 const ModalUserAvatar = () => {
   const dispatch = useDispatch();
   const { modalUpdateImageProfile } = useSelector((state) => state.ui);
+  const { user } = useSelector((state) => state.auth);
+  const [src, setSrc] = useState('');
+  const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState(null);
   const [tempFile, setTempFile] = useState(null);
   const [enabled, setEnabled] = useState(false);
-  const [src, setSrc] = useState('');
 
   const closeModalUpdateProfileImage = () => {
     dispatch(openModalUpdateUserImageProfile(false));
   };
 
-  const handleOnclose = () => {
-    setPreview(null);
+  const handleOnCrop = (pv) => {
+    setPreview(pv);
+    console.log(pv);
   };
 
   const b64toBlob = (dataURI) => {
@@ -32,21 +36,28 @@ const ModalUserAvatar = () => {
     return new Blob([ab], { type: 'image/jpeg' });
   };
 
-  const handleLoadFile = (file) => {
-    setTempFile(file);
-    setEnabled(true);
-  };
-
-  const handleOnCrop = (pv) => {
-    setPreview(pv);
-  };
-
   const handleOnBeforeFileLoad = (e) => {
+    setEnabled(true);
     setTempFile(e.target.files[0]);
+  };
+  const handleOnclose = () => {
+    setPreview(null);
+  };
+
+  const handleLoadFile = (file) => {
+    setLoading(true);
+    setTempFile(file);
+    setLoading(false);
   };
 
   const handleUpdateImageProfile = () => {
-    //TODO: handle update profile image
+    setLoading(true);
+    setEnabled(false);
+    const formData = new FormData();
+    const blob = b64toBlob(preview);
+    formData.append('file', blob);
+    dispatch(addProfilImage(formData, user?.avatar));
+    setLoading(false);
   };
 
   return (
@@ -70,8 +81,7 @@ const ModalUserAvatar = () => {
         onClose={closeModalUpdateProfileImage}
       >
         <Toast.Header closeButton={false}>
-          <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-          <strong className="me-auto">Update profile image</strong>
+          <strong className="me-auto">Profile image</strong>
           <CgClose
             onClick={closeModalUpdateProfileImage}
             style={{ cursor: 'pointer' }}
@@ -106,14 +116,16 @@ const ModalUserAvatar = () => {
             onBeforeFileLoad={handleOnBeforeFileLoad}
             src={src}
             onFileLoad={handleLoadFile}
+            exportQuality={0.5}
           />
           <div style={{ marginTop: 10 }}>
             <Button
               variant="primary"
               style={{ margin: 5 }}
               onClick={handleUpdateImageProfile}
+              disabled={!enabled}
             >
-              update
+              {loading ? '...' : 'update'}
             </Button>
           </div>
         </Toast.Body>
