@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import avatar from '../../assets/avatar.svg';
 import {
   FaUserAstronaut,
@@ -7,9 +7,15 @@ import {
   IoMaleFemaleOutline,
 } from 'react-icons/all';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { openModalUpdateUserImageProfile } from '../../redux/actions/ui.action';
 
 const AvatarDetails = () => {
   const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const handleOpenModalUpdateImageProfile = () => {
+    dispatch(openModalUpdateUserImageProfile(true));
+  };
   return (
     <div
       style={{
@@ -33,6 +39,7 @@ const AvatarDetails = () => {
               height: 180,
               cursor: 'pointer',
             }}
+            onClick={handleOpenModalUpdateImageProfile}
           />
         </span>
       </OverlayTrigger>

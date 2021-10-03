@@ -12,7 +12,7 @@ const initialState = {
   modalEditProfile: false,
   modalDeleteAccount: false,
   modalUpdateAccount: false,
-  modalUpdateImageProfile: true,
+  modalUpdateImageProfile: false,
 };
 
 export default (state = initialState, action) => {
