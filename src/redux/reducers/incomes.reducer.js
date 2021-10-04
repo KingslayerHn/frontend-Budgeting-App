@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
     case ADD_INCOMES:
       return {
         ...state,
-        items: [...state.items, payload],
+        items: [payload, ...state.items],
       };
     default:
       return state;

@@ -70,7 +70,7 @@ const ListAccountItem = ({ description, amount, account, createAt }) => {
           color: '#3d6586',
         }}
       >
-        {moment(createAt).calendar()}
+        {moment(createAt).format('L')}
       </Col>
     </Row>
   );

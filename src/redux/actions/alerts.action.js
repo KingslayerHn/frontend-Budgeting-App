@@ -15,6 +15,6 @@ export const setAlert =
           type: REMOVE_ALERT,
           payload: id,
         }),
-      3000
+      5000
     );
   };
