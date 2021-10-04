@@ -16,6 +16,8 @@ const Home = () => {
         alignItems: 'start',
         flex: 1,
         justifyContent: 'start',
+        height: '100%',
+        overflowY: 'auto',
       }}
     >
       {!accountRef ? (

@@ -67,7 +67,15 @@ const ModalEditProfile = ({ user }) => {
   };
 
   return (
-    <>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        overflowY: 'auto',
+        height: '100%',
+      }}
+    >
       <Row className={[styles.profileContainer, 'gx-0']}>
         <div
           style={{
@@ -244,7 +252,7 @@ const ModalEditProfile = ({ user }) => {
           </Col>
         </Row>
       </Row>
-    </>
+    </div>
   );
 };
 

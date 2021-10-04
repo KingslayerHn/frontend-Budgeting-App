@@ -152,7 +152,7 @@ const Dashboard = ({ children }) => {
             <Col
               xs={8}
               style={{
-                minHeight: '100%',
+                height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 padding: 50,
