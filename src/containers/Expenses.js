@@ -27,8 +27,8 @@ const Expenses = () => {
         style={{
           display: 'flex',
           position: 'absolute',
-          bottom: 10,
-          right: 10,
+          bottom: 20,
+          right: 20,
           alignItems: 'center',
         }}
         onMouseEnter={() => setHover(true)}
