@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Row, Table, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { IoAddCircleSharp } from 'react-icons/all';
 import NumberFormat from 'react-number-format';
 import moment from 'moment';
 import { openModalAddExpense } from '../redux/actions/ui.action';
 import ButtonAsIcon from '../components/Buttons/ButtonAsIcon';
 import { color } from '@material-ui/system';
+import ListAccountItem from '../components/Account/ListAccountItem';
+
+const header = ['DESCRIPTION', 'ACCOUNT', 'AMOUNT', 'DATE'];
 
 const Expenses = () => {
   const [hover, setHover] = useState(false);
@@ -74,45 +77,33 @@ const Expenses = () => {
           </h1>
         </div>
       ) : (
-        <Row
-          className={['gx-0']}
-          style={{
-            width: '100%',
-            height: 700,
-            overflowY: 'auto',
-          }}
-        >
-          <div>
-            <Table striped bordered hover style={{ backgroundColor: '#fff' }}>
-              <thead style={{ position: 'relative' }}>
-                <tr>
-                  <th>Description</th>
-                  <th>Account</th>
-                  <th>Amount</th>
-                  <th>Date</th>
-                </tr>
-              </thead>
-              <tbody style={{ overflowY: 'auto' }}>
-                {expenses.items.map((item) => (
-                  <tr key={item._id}>
-                    <td>{item.description}</td>
-                    <td>{item.account}</td>
-                    <td>
-                      {
-                        <NumberFormat
-                          value={item.amount}
-                          prefix="$"
-                          displayType="text"
-                        />
-                      }
-                    </td>
-                    <td>{moment(item.createAt).format('LL')}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
-          </div>
-        </Row>
+        <>
+          <Row style={{ padding: 15 }}>
+            {header.map((item) => (
+              <Col
+                xs={3}
+                style={{ textAlign: 'center', color: '#4E6EF5' }}
+                key={item}
+              >
+                {item}
+              </Col>
+            ))}
+          </Row>
+          <Row
+            className={['gx-0']}
+            style={{
+              width: '100%',
+              height: 700,
+              overflowY: 'auto',
+            }}
+          >
+            <div>
+              {expenses.items.map((item) => (
+                <ListAccountItem key={item._id} {...item} />
+              ))}
+            </div>
+          </Row>
+        </>
       )}
     </>
   );
