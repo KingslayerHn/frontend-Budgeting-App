@@ -9,16 +9,23 @@ import Error404 from './Error404';
 import { getAccounts } from '../redux/actions/account.action';
 import { getExpenses } from '../redux/actions/expenses.action';
 import { getIncomes } from '../redux/actions/incomes.action';
+import { getTransferences } from '../redux/actions/transferences.action';
 import Friends from '../containers/Friends';
 import Loader from '../components/Loader';
 import Home from './Home';
 
-const DashboardRouter = ({ getAccounts, getExpenses, getIncomes }) => {
+const DashboardRouter = ({
+  getAccounts,
+  getExpenses,
+  getIncomes,
+  getTransferences,
+}) => {
   const { userLoaded, token } = useSelector((state) => state.auth);
   useEffect(() => {
     getAccounts();
     getExpenses();
     getIncomes();
+    getTransferences();
   });
 
   if (token && !userLoaded) {
@@ -39,6 +46,9 @@ const DashboardRouter = ({ getAccounts, getExpenses, getIncomes }) => {
   );
 };
 
-export default connect(null, { getAccounts, getExpenses, getIncomes })(
-  DashboardRouter
-);
+export default connect(null, {
+  getAccounts,
+  getExpenses,
+  getIncomes,
+  getTransferences,
+})(DashboardRouter);

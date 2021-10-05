@@ -44,7 +44,7 @@ const Nav = () => {
             <BsSearch color="#0d56b3" />
           </InputGroup.Text>
           <FormControl
-            autoComplete="false"
+            autoComplete="off"
             type="email"
             placeholder="search friends"
             aria-label="Username"

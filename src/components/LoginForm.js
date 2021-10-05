@@ -79,7 +79,7 @@ const LoginForm = () => {
                   <AiOutlineMail color="#0d56b3" />
                 </InputGroup.Text>
                 <FormControl
-                  autoComplete="false"
+                  autoComplete="off"
                   type="email"
                   placeholder="Email address"
                   aria-label="Username"

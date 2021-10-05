@@ -74,7 +74,9 @@ const ModalAddExpenses = () => {
       >
         <Toast.Header closeButton={false}>
           <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-          <strong className="me-auto">ADD EXPENSE</strong>
+          <strong className="me-auto" style={{ fontSize: 22 }}>
+            EXPENSE
+          </strong>
           <CgClose
             onClick={closeModalAddExpense}
             style={{ cursor: 'pointer' }}
@@ -102,7 +104,7 @@ const ModalAddExpenses = () => {
                 </div>
                 <div>
                   <Form.Select
-                    autoComplete="false"
+                    autoComplete="off"
                     name="description"
                     aria-label="Default select example"
                     onChange={handleChange}
@@ -138,7 +140,7 @@ const ModalAddExpenses = () => {
                       fontWeight: 300,
                       color: '#69b4ed',
                     }}
-                    autoComplete="false"
+                    autoComplete="off"
                     type="number"
                     name="amount"
                     value={amount}

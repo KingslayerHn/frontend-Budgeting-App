@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { GET_TRANSFERENCES, ADD_TRANSFER } from '../types';
 import { debit, add } from './account.action';
+import { setAlert as createAlert } from './alerts.action';
+import {
+  updateAccountByExpense,
+  updateAccountByIncome,
+} from './references.action';
+import { openModalAddTransference } from './ui.action';
 
 export const getTransferences = () => async (dispatch) => {
   try {
@@ -64,6 +70,23 @@ export const addTransference =
           id: idRecivedAccount,
         })
       );
+      dispatch(
+        updateAccountByIncome(
+          parseFloat(parseFloat(actualRecivedAmount) + parseFloat(senderAmount))
+        )
+      );
+      dispatch(
+        updateAccountByExpense(
+          parseFloat(parseFloat(actualSenderAmount) - parseFloat(senderAmount))
+        )
+      );
+      dispatch(
+        createAlert({
+          message: 'Tranference was send succefully!!',
+          variant: 'success',
+        })
+      );
+      dispatch(openModalAddTransference(false));
     } catch (err) {
       console.log(err.response);
     }

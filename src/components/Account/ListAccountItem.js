@@ -22,7 +22,7 @@ const ListAccountItem = ({ description, amount, account, createAt }) => {
           padding: 5,
           textAlign: 'center',
           fontWeight: 600,
-          color: '#3d6586',
+          color: '#69b4ed',
         }}
       >
         {description}

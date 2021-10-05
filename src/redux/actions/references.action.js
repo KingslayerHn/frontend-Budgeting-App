@@ -1,7 +1,6 @@
 import {
   GET_ACCOUNT_REFERENCE,
   UPDATE_REFERENCE_BY_EXPENSE,
-  UPDATE_REFERENCE_BY_TRANSFERENCE,
   UPDATE_REFERENCE_BY_INCOME,
 } from '../types';
 
@@ -17,10 +16,5 @@ export const updateAccountByExpense = (amount) => ({
 
 export const updateAccountByIncome = (amount) => ({
   type: UPDATE_REFERENCE_BY_INCOME,
-  payload: amount,
-});
-
-export const updateAccountByTransference = (amount) => ({
-  type: UPDATE_REFERENCE_BY_TRANSFERENCE,
   payload: amount,
 });

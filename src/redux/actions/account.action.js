@@ -109,14 +109,6 @@ export const add =
     try {
       const res = await axios.put(`/api/accounts/${id}`, body, config);
       dispatch({ type: ADD, payload: res.data });
-      if (res.status === 200) {
-        dispatch(
-          createAlert({
-            message: 'the account was added!!',
-            variant: 'success',
-          })
-        );
-      }
     } catch (error) {
       console.log(error);
     }

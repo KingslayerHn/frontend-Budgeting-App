@@ -123,7 +123,7 @@ const RegisterForm = () => {
                   <RiUserAddLine color="#0d56b3" />
                 </InputGroup.Text>
                 <FormControl
-                  autoComplete="false"
+                  autoComplete="off"
                   type="text"
                   placeholder="First name"
                   aria-label="firstName"
@@ -144,7 +144,7 @@ const RegisterForm = () => {
                   <AiOutlineUsergroupAdd color="#0d56b3" />
                 </InputGroup.Text>
                 <FormControl
-                  autoComplete="false"
+                  autoComplete="off"
                   type="text"
                   placeholder="Last name"
                   aria-label="lastName"
@@ -187,7 +187,7 @@ const RegisterForm = () => {
                   <AiOutlineMail color="#0d56b3" />
                 </InputGroup.Text>
                 <FormControl
-                  autoComplete="false"
+                  autoComplete="off"
                   type="email"
                   placeholder="Email address"
                   aria-label="Username"
@@ -251,7 +251,7 @@ const RegisterForm = () => {
                   onClick={handleSubmit}
                   type="submit"
                 >
-                  SIGN UP
+                  CREATE
                 </Button>
               </div>
             </Form>
@@ -260,109 +260,6 @@ const RegisterForm = () => {
         </Col>
       </Row>
     </div>
-    // <div className={styles.banner}>
-    //   <div
-    //     style={{
-    //       display: 'flex',
-    //       flexDirection: 'Column ',
-    //       justifyContent: 'center',
-    //       alignItems: 'center',
-    //     }}
-    //   >
-    //     <h1>
-    //       <b>Budget App</b>
-    //     </h1>
-    //     <img src={budget} alt="budget" />
-    //   </div>
-    //   <Card style={{ width: 500 }}>
-    //     <Card.Body>
-    //       <Form onSubmit={handleSubmit}>
-    //         <Container>
-    //           <Row className={styles.register}>
-    //             <Col xs={6}>
-    //               <div>
-    //                 <label>FirstName</label>
-    //                 <input
-    //                   autoComplete="false"
-    //                   type="text"
-    //                   name="firstName"
-    //                   value={firstName}
-    //                   onChange={handleInputChange}
-    //                 />
-    //               </div>
-    //               <div>
-    //                 <label>Email</label>
-    //                 <input
-    //                   autoComplete="false"
-    //                   type="text"
-    //                   name="email"
-    //                   value={email}
-    //                   onChange={handleInputChange}
-    //                 />
-    //               </div>
-    //               <div>
-    //                 <label>Genre</label>
-    //                 <select
-    //                   onChange={handleInputChange}
-    //                   name="genre"
-    //                   value={genre}
-    //                 >
-    //                   <option value="male">Male</option>
-    //                   <option value="female">Female</option>
-    //                 </select>
-    //               </div>
-    //             </Col>
-    //             <Col xs={6}>
-    //               <div>
-    //                 <label>LastName</label>
-    //                 <input
-    //                   autoComplete="false"
-    //                   type="text"
-    //                   name="lastName"
-    //                   value={lastName}
-    //                   onChange={handleInputChange}
-    //                 />
-    //               </div>
-    //               <div>
-    //                 <label>Password</label>
-    //                 <input
-    //                   autoComplete="false"
-    //                   type="password"
-    //                   name="password"
-    //                   value={password}
-    //                   onChange={handleInputChange}
-    //                 />
-    //               </div>
-    //               <div>
-    //                 <label>Repeat password</label>
-    //                 <input
-    //                   autoComplete="false"
-    //                   type="password"
-    //                   name="repeat"
-    //                   value={repeat}
-    //                   onChange={handleInputChange}
-    //                 />
-    //               </div>
-    //             </Col>
-    //           </Row>
-    //         </Container>
-    //         <div className={styles.buttons}>
-    //           <Button
-    //             className={styles.primary}
-    //             onClick={handleSubmit}
-    //             disabled={loader}
-    //             type="submit"
-    //           >
-    //             {loader ? <Loader /> : 'Register'}
-    //           </Button>
-    //           <Button className={styles.secondary} onClick={handleChangePage}>
-    //             Login
-    //           </Button>
-    //         </div>
-    //       </Form>
-    //     </Card.Body>
-    //   </Card>
-    // </div>
   );
 };
 

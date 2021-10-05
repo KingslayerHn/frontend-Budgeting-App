@@ -26,6 +26,7 @@ import UpdateAccount from '../components/Account/UpdateAccount';
 import ModalUserAvatar from '../components/user/ModalUserAvatar';
 import ModalADdExpense from '../components/ModalAddExpenses';
 import ModalIncomes from '../components/ModalAddIncome';
+import ModalTransference from '../components/ModalAddTransference';
 
 const Dashboard = ({ children }) => {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const Dashboard = ({ children }) => {
     modalUpdateImageProfile,
     modalAddIncome,
     modalAddExpense,
+    modalAddTransference,
   } = useSelector((state) => state.ui);
   const {
     auth: { user },
@@ -74,7 +76,7 @@ const Dashboard = ({ children }) => {
       Image: <BsBoxArrowInRight />,
     },
     {
-      label: 'Transfer',
+      label: 'Transferences',
       to: '/transfer',
       Image: <BiTransfer />,
     },
@@ -242,6 +244,7 @@ const Dashboard = ({ children }) => {
       {modalUpdateImageProfile && <ModalUserAvatar />}
       {modalAddExpense && <ModalADdExpense />}
       {modalAddIncome && <ModalIncomes />}
+      {modalAddTransference && <ModalTransference />}
     </div>
   );
 };
