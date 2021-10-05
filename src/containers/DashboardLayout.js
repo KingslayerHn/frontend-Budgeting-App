@@ -25,6 +25,7 @@ import DeleteAccount from '../components/Account/DeleteAccount';
 import UpdateAccount from '../components/Account/UpdateAccount';
 import ModalUserAvatar from '../components/user/ModalUserAvatar';
 import ModalADdExpense from '../components/ModalAddExpenses';
+import ModalIncomes from '../components/ModalAddIncome';
 
 const Dashboard = ({ children }) => {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ const Dashboard = ({ children }) => {
     modalDeleteAccount,
     modalUpdateAccount,
     modalUpdateImageProfile,
+    modalAddIncome,
     modalAddExpense,
   } = useSelector((state) => state.ui);
   const {
@@ -239,6 +241,7 @@ const Dashboard = ({ children }) => {
       {modalUpdateAccount && <UpdateAccount />}
       {modalUpdateImageProfile && <ModalUserAvatar />}
       {modalAddExpense && <ModalADdExpense />}
+      {modalAddIncome && <ModalIncomes />}
     </div>
   );
 };

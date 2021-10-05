@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { ADD_INCOMES, GET_INCOMES } from '../types';
 import { debit } from './account.action';
+import { setAlert as createAlert } from './alerts.action';
+import { updateAccountByIncome } from './references.action';
+import { openModalAddIncome } from './ui.action';
 
 export const getIncomes = () => async (dispatch) => {
   try {
@@ -43,6 +46,14 @@ export const addIncome =
         payload: res.data,
       });
       dispatch(debit({ amount: amountAccount + tempAmount, id: id }));
+      dispatch(openModalAddIncome(false));
+      dispatch(updateAccountByIncome(res.data.amount));
+      dispatch(
+        createAlert({
+          message: `Income: ${description} added succefully!!`,
+          variant: 'success',
+        })
+      );
     } catch (err) {
       console.log(err.response);
     }

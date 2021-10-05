@@ -8,6 +8,7 @@ import Notifications from '../Notifications/Notifications';
 
 const Nav = () => {
   const dispatch = useDispatch();
+
   const { modalNotifications } = useSelector((state) => state.ui);
   const { items } = useSelector((state) => state.notifications);
   const [search, setSearch] = useState('');
@@ -19,6 +20,7 @@ const Nav = () => {
   const handleSelectNotificationIcon = () => {
     dispatch(openModalNotification(!modalNotifications));
   };
+
   return (
     <div
       style={{

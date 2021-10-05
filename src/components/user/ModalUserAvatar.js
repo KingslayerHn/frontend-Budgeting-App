@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Toast, Button, Spinner } from 'react-bootstrap';
+import { Toast, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { CgClose } from 'react-icons/all';
 import { openModalUpdateUserImageProfile } from '../../redux/actions/ui.action';

@@ -4,6 +4,8 @@ import {
   DELETE_USER_REFERENCE,
   GET_ACCOUNT_REFERENCE,
   DELETE_ACCOUNT_REFERENCE,
+  UPDATE_REFERENCE_BY_EXPENSE,
+  UPDATE_REFERENCE_BY_INCOME,
 } from '../types';
 
 const initialState = {
@@ -25,6 +27,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         accountRef: payload,
+      };
+
+    case UPDATE_REFERENCE_BY_EXPENSE:
+    case UPDATE_REFERENCE_BY_INCOME:
+      return {
+        ...state,
+        accountRef: {
+          ...state.accountRef,
+          amount: payload,
+        },
       };
 
     default:

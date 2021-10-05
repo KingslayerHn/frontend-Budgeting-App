@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import tempAvatar from '../../assets/avatar.svg';
 import {
   FaUserAstronaut,
   AiOutlineMail,

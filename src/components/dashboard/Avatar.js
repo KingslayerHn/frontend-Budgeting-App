@@ -1,7 +1,20 @@
 import React from 'react';
 import A from '../user/Avatar';
+import { useHistory } from 'react-router-dom';
+import { openModalEditProfile } from '../../redux/actions/ui.action';
+import { getAccountReference } from '../../redux/actions/references.action';
+import { useDispatch } from 'react-redux';
 
 const Avatar = ({ data: { image, email, userName, w, h, ft, fe } }) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleClickAvatar = () => {
+    history.push('/');
+    dispatch(openModalEditProfile(false));
+    dispatch(getAccountReference(null));
+  };
+
   return (
     <div
       style={{
@@ -9,7 +22,9 @@ const Avatar = ({ data: { image, email, userName, w, h, ft, fe } }) => {
         alignItems: 'center',
         flexDirection: 'row',
         flex: 1,
+        cursor: 'pointer',
       }}
+      onClick={handleClickAvatar}
     >
       <A size={70} />
       <div

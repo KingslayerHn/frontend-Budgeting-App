@@ -4,7 +4,7 @@ import styles from '../../styles.module.scss';
 import AvatarDetails from './AvatarDetails';
 import { FiEdit } from 'react-icons/all';
 import Biography from './Biography';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { openModalEditProfile } from '../../redux/actions/ui.action';
 
 const Profile = () => {

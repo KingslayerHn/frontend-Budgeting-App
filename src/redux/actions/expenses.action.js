@@ -3,6 +3,7 @@ import { ADD_EXPENSES, GET_EXPENCES } from '../types';
 import { debit } from './account.action';
 import { setAlert as createAlert } from './alerts.action';
 import { openModalAddExpense } from './ui.action';
+import { updateAccountByExpense } from './references.action';
 
 export const getExpenses = () => async (dispatch) => {
   try {
@@ -45,6 +46,7 @@ export const addExpense =
         payload: res.data,
       });
       dispatch(debit({ amount: amountAccount - tempAmount, id: id }));
+      dispatch(updateAccountByExpense(res.data.amount));
       dispatch(openModalAddExpense(false));
       dispatch(
         createAlert({
