@@ -46,7 +46,7 @@ const Nav = () => {
           <FormControl
             autoComplete="off"
             type="email"
-            placeholder="search friends"
+            placeholder="search people"
             aria-label="Username"
             aria-describedby="basic-addon1"
             name="search"

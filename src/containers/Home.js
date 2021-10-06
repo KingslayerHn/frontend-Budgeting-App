@@ -28,7 +28,6 @@ const Home = () => {
         </>
       ) : (
         <>
-          <h5 style={{ color: '#527491', paddingLeft: 20 }}>Account details</h5>
           <AccountDetails />
         </>
       )}
