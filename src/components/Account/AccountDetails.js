@@ -10,6 +10,8 @@ import {
   openModalUpdateAccount,
 } from '../../redux/actions/ui.action';
 import BalanceMonth from './BalanceMonth';
+import GroupedBarChart from '../Stadistics/GroupedBarChart';
+import YearDataPiker from '../Stadistics/YearDataPiker';
 
 const AccountDetails = () => {
   const dispatch = useDispatch();
@@ -146,19 +148,15 @@ const AccountDetails = () => {
       <Col xs={7}>
         <BalanceMonth />
       </Col>
-      <Col xs={12}>
-        <h5
-          style={{
-            backgroundColor: '#fff',
-            borderRadius: 20,
-            padding: 30,
-            margin: 15,
-          }}
-        >
-          grafica de barra con los incomes, expenses del mes actual por dia de
-          la cuenta seleccionada, ademas permitirá ver meses pasados de la
-          ceunta seleccionada
-        </h5>
+      <Col
+        xs={12}
+        style={{
+          borderRadius: 20,
+          width: '100%',
+        }}
+      >
+        <YearDataPiker />
+        <GroupedBarChart />
       </Col>
     </Row>
   );

@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllMonthStadistics } from '../../redux/actions/stadistics.action';
 import ButtonAsIcon from '../Buttons/ButtonAsIcon';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/all';
 
-const MonthDatePiker = () => {
+const YearDataPiker = () => {
   const { accountRef } = useSelector((state) => state.references);
   const [date, setDate] = useState(moment());
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(
-      getAllMonthStadistics({
-        id: accountRef._id,
-        date: date,
-      })
-    );
-  }, [date, dispatch, accountRef._id]);
+  // useEffect(() => {
+  //   dispatch();
+  //     getAllMonthStadistics({
+  //       id: accountRef._id,
+  //       date: date,
+  //     })
+  // }, [date, dispatch, accountRef._id]);
 
   const handleAddMonth = () => {
-    setDate(moment(date).add('month', 1));
+    setDate(moment(date).add('year', 1));
   };
   const handleReduceMonth = () => {
-    setDate(moment(date).add('month', -1));
+    setDate(moment(date).add('year', -1));
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div
+      style={{ display: 'flex', justifyContent: 'flex-start', marginLeft: 10 }}
+    >
       <ButtonAsIcon
         icon={MdKeyboardArrowLeft}
         color="#6A84F5"
@@ -35,11 +35,10 @@ const MonthDatePiker = () => {
         size={25}
         rounded
         variant="light"
-        flex={1}
         onClick={handleReduceMonth}
       />
       <h5 style={{ fontSize: 18, fontWeight: 400 }}>
-        {moment(date).format('MMMM/YYYY')}
+        {moment(date).format('YYYY')}
       </h5>
       <ButtonAsIcon
         icon={MdKeyboardArrowRight}
@@ -48,11 +47,10 @@ const MonthDatePiker = () => {
         size={25}
         rounded
         variant="light"
-        flex={1}
         onClick={handleAddMonth}
       />
     </div>
   );
 };
 
-export default MonthDatePiker;
+export default YearDataPiker;
