@@ -7,27 +7,8 @@ import TotalItemPerAccount from '../Stadistics/TotalItemPerAccount';
 
 const BalanceMonth = () => {
   const {
-    month: { loading, expenses, incomes, transferences },
+    month: { expenses, incomes, transferences },
   } = useSelector((state) => state.stadistics);
-
-  if (loading) {
-    return (
-      <>
-        <MonthDatePiker />
-
-        <div
-          style={{
-            backgroundColor: '#fff',
-            borderRadius: 20,
-            padding: 20,
-            margin: '8px 15px 15px 15px',
-          }}
-        >
-          <BalanceMonthPlaceHolder />
-        </div>
-      </>
-    );
-  }
 
   return (
     <>

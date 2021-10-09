@@ -63,12 +63,10 @@ export const getAllMonthStadistics =
           },
         };
 
-        setTimeout(() => {
-          dispatch({
-            type: GET_ALL_MONTH_STADISTICS,
-            payload: data,
-          });
-        }, 500);
+        dispatch({
+          type: GET_ALL_MONTH_STADISTICS,
+          payload: data,
+        });
       }
     } catch (error) {
       console.log(error);
@@ -105,7 +103,6 @@ export const getAllYearStadistics =
       );
 
       if (res.status === 200) {
-        console.log(res.data);
         dispatch({
           type: GET_ALL_YEAR_STADISTICS,
           payload: res.data,
