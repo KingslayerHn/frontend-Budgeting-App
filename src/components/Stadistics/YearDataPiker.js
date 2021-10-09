@@ -3,19 +3,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 import ButtonAsIcon from '../Buttons/ButtonAsIcon';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/all';
+import { getAllYearStadistics } from '../../redux/actions/stadistics.action';
 
 const YearDataPiker = () => {
   const { accountRef } = useSelector((state) => state.references);
   const [date, setDate] = useState(moment());
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch();
-  //     getAllMonthStadistics({
-  //       id: accountRef._id,
-  //       date: date,
-  //     })
-  // }, [date, dispatch, accountRef._id]);
+  useEffect(() => {
+    dispatch(
+      getAllYearStadistics({
+        id: accountRef._id,
+        date: date,
+      })
+    );
+  }, [date, dispatch, accountRef._id]);
 
   const handleAddMonth = () => {
     setDate(moment(date).add('year', 1));

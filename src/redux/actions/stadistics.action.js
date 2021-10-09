@@ -81,4 +81,43 @@ export const getAllMonthStadistics =
     }
   };
 
-export const getAllYearStadistics = () => async (dispatch) => {};
+export const getAllYearStadistics =
+  ({ id, date }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const year = moment(date).year();
+
+    const body = JSON.stringify({
+      id,
+      year,
+    });
+
+    try {
+      const res = await axios.post(
+        `/api/accounts/year/stadistics/${id}`,
+        body,
+        config
+      );
+
+      if (res.status === 200) {
+        console.log(res.data);
+        dispatch({
+          type: GET_ALL_YEAR_STADISTICS,
+          payload: res.data,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      dispatch(
+        createAlert({
+          message: 'server Error to get the year balance',
+          variant: 'danger',
+        })
+      );
+    }
+  };

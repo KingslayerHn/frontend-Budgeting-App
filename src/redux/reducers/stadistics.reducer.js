@@ -16,11 +16,11 @@ const initialState = {
     loading: true,
   },
   year: {
-    incomes: 0,
-    expenses: 0,
+    incomes: [],
+    expenses: [],
     transferences: {
-      entry: 0,
-      out: 0,
+      in: [],
+      out: [],
     },
     loading: true,
   },
@@ -54,8 +54,8 @@ export default (state = initialState, action) => {
           expenses: payload.expenses,
           transferences: {
             ...state.year.transferences,
-            in: payload.transferences.in,
-            out: payload.transferences.out,
+            in: payload.transferencesIn,
+            out: payload.transferencesOut,
           },
           loading: false,
         },
