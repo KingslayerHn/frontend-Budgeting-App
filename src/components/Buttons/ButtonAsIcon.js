@@ -1,7 +1,15 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-const ButtonAsIcon = ({ onClick, color, icon, size, disabled }) => {
+const ButtonAsIcon = ({
+  onClick,
+  color,
+  icon,
+  size,
+  disabled,
+  variant,
+  flex,
+}) => {
   return (
     <Button
       style={{
@@ -16,8 +24,9 @@ const ButtonAsIcon = ({ onClick, color, icon, size, disabled }) => {
         justifyContent: 'center',
         width: 'auto',
         border: 'none',
+        flex: flex,
       }}
-      variant="light"
+      variant={variant}
       as={icon}
       onClick={onClick}
       disabled={disabled}

@@ -2,19 +2,13 @@ import React, { useState } from 'react';
 import { Row, Col, OverlayTrigger, Popover, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from '../../styles.module.scss';
-import {
-  BsThreeDotsVertical,
-  GiPayMoney,
-  GiReceiveMoney,
-  BiTransfer,
-} from 'react-icons/all';
+import { BsThreeDotsVertical } from 'react-icons/all';
 import NumberFormat from 'react-number-format';
 import moment from 'moment';
 import {
   openModalDeleteAccount,
   openModalUpdateAccount,
 } from '../../redux/actions/ui.action';
-import TotalItemPerAccount from '../Stadistics/TotalItemPerAccount';
 import BalanceMonth from './BalanceMonth';
 
 const AccountDetails = () => {

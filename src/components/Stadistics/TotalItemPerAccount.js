@@ -9,6 +9,7 @@ const TotalItemPerAccount = ({
   bgIcon,
   fzIcon,
   sizeBgIcon,
+  transference,
 }) => {
   return (
     <div
@@ -37,19 +38,85 @@ const TotalItemPerAccount = ({
         }}
       >
         <h5 className="m-0">{description}</h5>
-        <h6 className="m-0" style={{ fontSize: 26, color: 'red ' }}>
-          <NumberFormat
-            value={total}
-            displayType={'text'}
-            thousandSeparator={true}
-            prefix={'$'}
-            renderText={(value, props) => <div {...props}>{value}</div>}
+        {!transference && (
+          <h6 className="m-0" style={{ fontSize: 26, color: 'red ' }}>
+            <NumberFormat
+              value={total}
+              displayType={'text'}
+              thousandSeparator={true}
+              prefix={'$'}
+              renderText={(value, props) => <div {...props}>{value}</div>}
+              style={{
+                fontWeight: 600,
+                color: '#FFA463',
+              }}
+            />
+          </h6>
+        )}
+        {transference && (
+          <div
             style={{
-              fontWeight: 600,
-              color: '#FFA463',
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'row',
             }}
-          />
-        </h6>
+          >
+            <div style={{ display: 'flex', flex: 1, marginRight: 20 }}>
+              <h6
+                style={{
+                  fontSize: 22,
+                  fontWeight: 500,
+                  color: '#3d6586',
+                  margin: 0,
+                  flex: 1,
+                  marginRight: 5,
+                }}
+              >
+                In:
+              </h6>
+              <h6 className="m-0" style={{ fontSize: 26, flex: 2 }}>
+                <NumberFormat
+                  value={total.in}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  prefix={'$'}
+                  renderText={(value, props) => <div {...props}>{value}</div>}
+                  style={{
+                    fontWeight: 600,
+                    color: '#FFA463',
+                  }}
+                />
+              </h6>
+            </div>
+            <div style={{ display: 'flex', flex: 1 }}>
+              <h6
+                style={{
+                  fontSize: 22,
+                  fontWeight: 500,
+                  color: '#3d6586',
+                  margin: 0,
+                  flex: 1,
+                  marginRight: 5,
+                }}
+              >
+                out:
+              </h6>
+              <h6 className="m-0" style={{ fontSize: 26, flex: 2 }}>
+                <NumberFormat
+                  value={total.out}
+                  displayType={'text'}
+                  thousandSeparator={true}
+                  prefix={'$'}
+                  renderText={(value, props) => <div {...props}>{value}</div>}
+                  style={{
+                    fontWeight: 600,
+                    color: '#FFA463',
+                  }}
+                />
+              </h6>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

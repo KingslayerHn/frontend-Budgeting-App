@@ -8,6 +8,7 @@ import transferences from './transferences.reducer';
 import references from './references.reducer';
 import ui from './ui.reducer';
 import notifications from './notifications.reducer';
+import stadistics from './stadistics.reducer';
 
 export default combineReducers({
   auth,
@@ -17,6 +18,7 @@ export default combineReducers({
   transferences,
   references,
   notifications,
+  stadistics,
   ui,
   alerts,
 });

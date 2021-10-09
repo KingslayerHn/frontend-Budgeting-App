@@ -51,6 +51,7 @@ const Expenses = () => {
           size={60}
           onClick={handleOpenModal}
           disabled={!accountRef}
+          variant="light"
         />
       </div>
 

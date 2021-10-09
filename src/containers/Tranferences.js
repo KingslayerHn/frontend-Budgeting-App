@@ -52,6 +52,7 @@ const Transferences = () => {
           size={60}
           onClick={handleOpenModal}
           disabled={!accountRef || accounts.items.length < 2}
+          variant="light"
         />
       </div>
 
