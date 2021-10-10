@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../../styles.module.scss';
-import { IoIosNotificationsOutline, BsSearch } from 'react-icons/all';
-import { InputGroup, FormControl, Badge } from 'react-bootstrap';
+import { IoIosNotificationsOutline } from 'react-icons/all';
+import { Badge } from 'react-bootstrap';
 import { openModalNotification } from '../../redux/actions/ui.action';
 import { useDispatch, useSelector } from 'react-redux';
 import Notifications from '../Notifications/Notifications';
+import Search from './Search';
 
 const Nav = () => {
   const dispatch = useDispatch();
 
   const { modalNotifications } = useSelector((state) => state.ui);
   const { items } = useSelector((state) => state.notifications);
-  const [search, setSearch] = useState('');
-
-  const handleInputChange = ({ target }) => {
-    setSearch(target.value);
-  };
 
   const handleSelectNotificationIcon = () => {
     dispatch(openModalNotification(!modalNotifications));
@@ -27,35 +23,11 @@ const Nav = () => {
         display: 'flex',
         marginBottom: 30,
         padding: 20,
+        position: 'relative',
+        alignItems: 'center',
       }}
     >
-      <div className={styles.search}>
-        <InputGroup style={{ border: 'none' }}>
-          <InputGroup.Text
-            style={{
-              border: 'none',
-              backgroundColor: 'transparent',
-              fontWeight: 600,
-              fontSize: 26,
-              marginLeft: 20,
-              marginRight: 20,
-            }}
-          >
-            <BsSearch color="#0d56b3" />
-          </InputGroup.Text>
-          <FormControl
-            autoComplete="off"
-            type="email"
-            placeholder="search people"
-            aria-label="Username"
-            aria-describedby="basic-addon1"
-            name="search"
-            value={search}
-            onChange={handleInputChange}
-            className={styles.inputSearch}
-          />
-        </InputGroup>
-      </div>
+      <Search />
       <div className={styles.notificationIconContainer}>
         {!modalNotifications && items.length > 0 && (
           <Badge

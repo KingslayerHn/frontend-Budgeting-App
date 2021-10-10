@@ -9,6 +9,7 @@ import references from './references.reducer';
 import ui from './ui.reducer';
 import notifications from './notifications.reducer';
 import stadistics from './stadistics.reducer';
+import search from './search.reducer';
 
 export default combineReducers({
   auth,
@@ -19,6 +20,7 @@ export default combineReducers({
   references,
   notifications,
   stadistics,
+  search,
   ui,
   alerts,
 });

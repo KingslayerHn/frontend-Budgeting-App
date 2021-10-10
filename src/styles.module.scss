@@ -302,9 +302,10 @@ button {
   border-radius: 30px;
   background-color: #fff;
   align-items: center;
+
   .inputSearch {
     border: none;
-    width: 70%;
+    width: 100%;
     margin-right: 20px;
     padding: 25px;
     font-weight: 300;
@@ -406,6 +407,18 @@ button {
 .selectDetails:hover {
   background-color: $five;
   color: #fff;
+}
+
+// search item reference
+.searchItemReference {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  cursor: pointer;
+}
+.searchItemReference:hover {
+  background-color: #b5d7f31c;
 }
 
 // animation add acccount
