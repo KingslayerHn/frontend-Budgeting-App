@@ -2,6 +2,7 @@ import React from 'react';
 import Av from 'react-avatar';
 import { useSelector } from 'react-redux';
 import tempAvatar from '../../assets/avatar.svg';
+import { serverUri } from '../../utils/uris';
 
 const Avatar = ({ size, cursor, onClick, shadow }) => {
   const { user } = useSelector((state) => state.auth);
@@ -11,7 +12,7 @@ const Avatar = ({ size, cursor, onClick, shadow }) => {
       size={size}
       src={
         user.avatar && user.avatar !== ''
-          ? `api/image/profile/${user.avatar}`
+          ? `${serverUri}/api/image/profile/${user.avatar}`
           : `${tempAvatar}`
       }
       round

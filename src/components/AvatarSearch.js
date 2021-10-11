@@ -6,6 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { resetReferencesUsers } from '../redux/actions/search.action';
 import { getUserReference } from '../redux/actions/references.action';
+import { serverUri } from '../utils/uris';
 
 const AvatarSearch = ({
   firstName,
@@ -18,7 +19,6 @@ const AvatarSearch = ({
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const handleClickUserProfile = () => {
     dispatch(getUserReference(item));
@@ -35,7 +35,7 @@ const AvatarSearch = ({
         round
         src={
           avatar && avatar !== ''
-            ? `api/image/profile/${avatar}`
+            ? `${serverUri}/api/image/profile/${avatar}`
             : `${tempAvatar}`
         }
       />

@@ -41,7 +41,7 @@ const DashboardRouter = ({
         <Route path="/incomes" component={Incomes} />
         <Route path="/transfer" component={Tranferences} />
         <Route path="/friends" component={Friends} />
-        <Route path="/profile/" component={ProfileUserSearch} />
+        <Route path="/profile" component={ProfileUserSearch} />
         <Route path="*" component={Error404} />
       </Switch>
     </Layout>

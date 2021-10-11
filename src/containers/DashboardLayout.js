@@ -33,7 +33,7 @@ const Dashboard = ({ children }) => {
   const history = useHistory();
   const [add, setAdd] = useState(false);
 
-  const { isAuth } = useSelector((state) => state.auth);
+  const { isAuth, user } = useSelector((state) => state.auth);
   const {
     modalDeleteAccount,
     modalUpdateAccount,
@@ -42,9 +42,6 @@ const Dashboard = ({ children }) => {
     modalAddExpense,
     modalAddTransference,
   } = useSelector((state) => state.ui);
-  const {
-    auth: { user },
-  } = useSelector((state) => state);
 
   if (!isAuth) {
     return <Redirect to="/login" />;
