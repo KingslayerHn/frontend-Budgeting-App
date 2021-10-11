@@ -1,7 +1,14 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import Astro from '../assets/astronaunts.svg';
+import { useHistory } from 'react-router-dom';
+import image404 from '../assets/error.svg';
 const Error404 = () => {
+  const history = useHistory();
+
+  const handleRedirect = () => {
+    history.push('/');
+  };
+
   return (
     <div
       style={{
@@ -9,13 +16,13 @@ const Error404 = () => {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
-        width: '100vw',
-        height: '100vh',
+        width: '100%',
+        height: '100%',
       }}
     >
       <div
         style={{
-          width: '50%',
+          width: '60%',
           height: 'auto',
           flex: 4,
           alignItems: 'center',
@@ -23,10 +30,12 @@ const Error404 = () => {
           display: 'flex',
         }}
       >
-        <img src={Astro} alt="astronauts" />
+        <img src={image404} alt="astronauts" />
       </div>
       <div style={{ flex: 1 }}>
-        <Button variant="primary">Go back!</Button>
+        <Button variant="primary" onClick={handleRedirect}>
+          Go back!
+        </Button>
       </div>
     </div>
   );

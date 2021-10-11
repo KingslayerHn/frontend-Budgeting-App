@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Avatar from 'react-avatar';
 import styles from '../styles.module.scss';
 import tempAvatar from '../assets/avatar.svg';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { resetReferencesUsers } from '../redux/actions/search.action';
+import { getUserReference } from '../redux/actions/references.action';
 
-const AvatarSearch = ({ firstName, lastName, profession, email, avatar }) => {
+const AvatarSearch = ({
+  firstName,
+  lastName,
+  profession,
+  email,
+  avatar,
+  _id,
+  item,
+}) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const handleClickUserProfile = () => {
+    dispatch(getUserReference(item));
+    history.push(`/profile/?q=${_id}`);
+    dispatch(resetReferencesUsers());
+  };
   return (
-    <div className={[styles.searchItemReference]}>
+    <div
+      className={[styles.searchItemReference]}
+      onClick={handleClickUserProfile}
+    >
       <Avatar
         size={50}
         round

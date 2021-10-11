@@ -13,6 +13,7 @@ import { getTransferences } from '../redux/actions/transferences.action';
 import Friends from '../containers/Friends';
 import Loader from '../components/Loader';
 import Home from './Home';
+import ProfileUserSearch from '../components/Search/ProfileUserSearch';
 
 const DashboardRouter = ({
   getAccounts,
@@ -40,6 +41,7 @@ const DashboardRouter = ({
         <Route path="/incomes" component={Incomes} />
         <Route path="/transfer" component={Tranferences} />
         <Route path="/friends" component={Friends} />
+        <Route path="/profile/" component={ProfileUserSearch} />
         <Route path="*" component={Error404} />
       </Switch>
     </Layout>

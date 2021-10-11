@@ -84,7 +84,7 @@ const Search = () => {
             }}
           >
             {searchUsersReference.map((item) => (
-              <AvatarSearch key={item.id} {...item} />
+              <AvatarSearch key={item._id} {...item} item={item} />
             ))}
           </div>
         )}

@@ -35,3 +35,14 @@ export const handleChangeText = (text) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const resetReferencesUsers = () => (dispatch) => {
+  dispatch({
+    type: GET_USERS_SEARCH_REFERENCE,
+    payload: [],
+  });
+  dispatch({
+    type: HANDLE_CHANGE_SEARCH,
+    payload: '',
+  });
+};
