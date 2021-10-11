@@ -22,7 +22,6 @@ const ModalUserAvatar = () => {
 
   const handleOnCrop = (pv) => {
     setPreview(pv);
-    console.log(pv);
   };
 
   const b64toBlob = (dataURI) => {

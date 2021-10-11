@@ -6,11 +6,13 @@ import {
   DELETE_ACCOUNT_REFERENCE,
   UPDATE_REFERENCE_BY_EXPENSE,
   UPDATE_REFERENCE_BY_INCOME,
+  GET_USERS_SEARCH_REFERENCE,
 } from '../types';
 
 const initialState = {
   userRef: null,
   accountRef: null,
+  searchUsersReference: [],
 };
 
 export default (state = initialState, action) => {
@@ -37,6 +39,12 @@ export default (state = initialState, action) => {
           ...state.accountRef,
           amount: payload,
         },
+      };
+
+    case GET_USERS_SEARCH_REFERENCE:
+      return {
+        ...state,
+        searchUsersReference: payload,
       };
 
     default:

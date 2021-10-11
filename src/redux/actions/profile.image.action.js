@@ -12,7 +12,6 @@ export const addProfilImage = (file, fileName) => async (dispatch) => {
 
   try {
     const res = await axios.post('api/image/profile/upload', file, config);
-    console.log(res.data);
     dispatch({
       type: UPDATE_USER_PROFILE_IMAGE,
       payload: res.data.filename,

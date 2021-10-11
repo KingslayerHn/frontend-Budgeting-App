@@ -3,44 +3,16 @@ import { InputGroup, FormControl } from 'react-bootstrap';
 import { BsSearch } from 'react-icons/all';
 import { useSelector, useDispatch } from 'react-redux';
 import { handleChangeText } from '../../redux/actions/search.action';
-import styles from '../../styles.module.scss';
 import AvatarSearch from '../AvatarSearch';
-import avatarSrc from '../../assets/avatar.svg';
 
 const Search = () => {
   const dispatch = useDispatch();
   const { searchText } = useSelector((state) => state.search);
+  const { searchUsersReference } = useSelector((state) => state.references);
 
   const handleInputChange = ({ target }) => {
     dispatch(handleChangeText(target.value));
   };
-
-  const users = [
-    {
-      id: 123434534535,
-      email: 'lesterarte@gmail.com',
-      firstName: 'lester Eduardo',
-      lastName: 'Arteaga Anidno',
-      profession: 'Full stack developer',
-      src: avatarSrc,
-    },
-    {
-      id: 53455145345,
-      email: 'lesterarte@gmail.com',
-      firstName: 'lester Eduardo',
-      lastName: 'Arteaga Anidno',
-      profession: 'Full stack developer',
-      src: avatarSrc,
-    },
-    {
-      id: 467657562456,
-      email: 'lesterarte@gmail.com',
-      firstName: 'lester Eduardo',
-      lastName: 'Arteaga Anidno',
-      profession: 'Full stack developer',
-      src: avatarSrc,
-    },
-  ];
 
   return (
     <div
@@ -86,7 +58,7 @@ const Search = () => {
             autoComplete="off"
             type="text"
             placeholder="search...."
-            aria-label="Username"
+            aria-label="search"
             aria-describedby="basic-addon1"
             name="search"
             value={searchText}
@@ -99,7 +71,7 @@ const Search = () => {
             }}
           />
         </InputGroup>
-        {searchText.trim().length > 0 && (
+        {searchUsersReference.length > 0 && (
           <div
             style={{
               display: 'flex',
@@ -111,7 +83,7 @@ const Search = () => {
               borderBottomRightRadius: 25,
             }}
           >
-            {users.map((item) => (
+            {searchUsersReference.map((item) => (
               <AvatarSearch key={item.id} {...item} />
             ))}
           </div>
