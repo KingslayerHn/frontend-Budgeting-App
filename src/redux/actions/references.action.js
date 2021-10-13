@@ -4,6 +4,7 @@ import {
   GET_USER_REFERENCE,
   UPDATE_REFERENCE_BY_EXPENSE,
   UPDATE_REFERENCE_BY_INCOME,
+  GET_ACCOUNTS_USER_REF,
 } from '../types';
 
 export const getAccountReference = (item) => ({
@@ -38,6 +39,24 @@ export const getUserReferenceById = (id) => async (dispatch) => {
 
     dispatch({
       type: GET_USER_REFERENCE,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getAccountsUserRef = (id) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  try {
+    const res = await axios.get(`/api/accounts/${id}`, config);
+
+    dispatch({
+      type: GET_ACCOUNTS_USER_REF,
       payload: res.data,
     });
   } catch (error) {

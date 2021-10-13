@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import NotFoundPage from '../../containers/Error404';
 import queryString from 'query-string';
 import { useLocation } from 'react-router-dom';
-import { getUserReferenceById } from '../../redux/actions/references.action';
+import {
+  getAccountsUserRef,
+  getUserReferenceById,
+} from '../../redux/actions/references.action';
 import ProfileSelectedUser from './ProfileSelectedUser';
 import { Col, Row } from 'react-bootstrap';
 import AvatarSearch from '../AvatarSearch';
@@ -11,33 +14,34 @@ import AvatarSearch from '../AvatarSearch';
 const ProfileUserSearch = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+
+  const { userRef } = useSelector((state) => state.references);
+  const { accountsUserReference } = useSelector((state) => state.references);
+
   useEffect(() => {
     const { q } = queryString.parse(location.search);
     dispatch(getUserReferenceById(q));
   }, [location.search, dispatch]);
 
-  const { userRef } = useSelector((state) => state.references);
+  useEffect(() => {
+    dispatch(getAccountsUserRef(userRef?._id));
+  }, [dispatch, userRef]);
 
-  const accounts = [
-    'Salutec',
-    'BAC',
-    'OCCIDENTE',
-    'ETERNA',
-    'CHAPULTEPEC',
-    'CONCORDIA',
-  ];
   const friends = [
     {
+      _id: 3,
       keywords: 'Lester Eduardo Arteaga Andino',
       profession: 'Full stack developer',
       email: 'lesterarte@gmail.com',
     },
     {
+      _id: 213,
       keywords: 'Lester Eduardo Arteaga Andino',
       profession: 'Full stack developer',
       email: 'lesterarte@gmail.com',
     },
     {
+      _id: 243,
       keywords: 'Lester Eduardo Arteaga Andino',
       profession: 'Full stack developer',
       email: 'lesterarte@gmail.com',
@@ -68,11 +72,11 @@ const ProfileUserSearch = () => {
                 flexWrap: 'wrap',
               }}
             >
-              {accounts.length > 0 ? (
+              {accountsUserReference.length > 0 ? (
                 <>
-                  {accounts.map((item) => (
+                  {accountsUserReference.map((item) => (
                     <div
-                      key={item}
+                      key={item._id}
                       style={{
                         padding: '10px 20px 10px 20px',
                         backgroundColor: '#6a84f5',
@@ -81,7 +85,7 @@ const ProfileUserSearch = () => {
                         margin: 5,
                       }}
                     >
-                      {item}
+                      {item.description}
                     </div>
                   ))}
                 </>
@@ -105,7 +109,9 @@ const ProfileUserSearch = () => {
               }}
             >
               {friends.length > 0 ? (
-                friends.map((friend) => <AvatarSearch {...friend} onClick />)
+                friends.map((friend) => (
+                  <AvatarSearch {...friend} onClick key={friend._id} />
+                ))
               ) : (
                 <p style={{ fontWeight: 200, color: '#6a84f5' }}>
                   This user don't have friends yet

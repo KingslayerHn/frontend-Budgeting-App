@@ -7,12 +7,14 @@ import {
   UPDATE_REFERENCE_BY_EXPENSE,
   UPDATE_REFERENCE_BY_INCOME,
   GET_USERS_SEARCH_REFERENCE,
+  GET_ACCOUNTS_USER_REF,
 } from '../types';
 
 const initialState = {
   userRef: null,
   accountRef: null,
   searchUsersReference: [],
+  accountsUserReference: [],
 };
 
 export default (state = initialState, action) => {
@@ -45,6 +47,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         searchUsersReference: payload,
+      };
+    case GET_ACCOUNTS_USER_REF:
+      return {
+        ...state,
+        accountsUserReference: payload,
       };
 
     default:
