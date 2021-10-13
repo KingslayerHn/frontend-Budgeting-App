@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { getUserReferenceById } from '../../redux/actions/references.action';
 import ProfileSelectedUser from './ProfileSelectedUser';
 import { Col, Row } from 'react-bootstrap';
+import AvatarSearch from '../AvatarSearch';
 
 const ProfileUserSearch = () => {
   const location = useLocation();
@@ -17,7 +18,31 @@ const ProfileUserSearch = () => {
 
   const { userRef } = useSelector((state) => state.references);
 
-  const accounts = ['Salutec', 'BAC', 'OCCIDENTE', 'ETERNA'];
+  const accounts = [
+    'Salutec',
+    'BAC',
+    'OCCIDENTE',
+    'ETERNA',
+    'CHAPULTEPEC',
+    'CONCORDIA',
+  ];
+  const friends = [
+    {
+      keywords: 'Lester Eduardo Arteaga Andino',
+      profession: 'Full stack developer',
+      email: 'lesterarte@gmail.com',
+    },
+    {
+      keywords: 'Lester Eduardo Arteaga Andino',
+      profession: 'Full stack developer',
+      email: 'lesterarte@gmail.com',
+    },
+    {
+      keywords: 'Lester Eduardo Arteaga Andino',
+      profession: 'Full stack developer',
+      email: 'lesterarte@gmail.com',
+    },
+  ];
 
   if (!userRef) {
     return <NotFoundPage />;
@@ -69,7 +94,7 @@ const ProfileUserSearch = () => {
           </div>
         </Col>
         <Col xs={6}>
-          <h5>I dont know</h5>
+          <h5 style={{ paddingLeft: 10 }}>Some Friends</h5>
           <div style={{ width: '100%' }}>
             <div
               style={{
@@ -79,7 +104,13 @@ const ProfileUserSearch = () => {
                 borderRadius: 20,
               }}
             >
-              <p>Don't have accounts yet</p>
+              {friends.length > 0 ? (
+                friends.map((friend) => <AvatarSearch {...friend} onClick />)
+              ) : (
+                <p style={{ fontWeight: 200, color: '#6a84f5' }}>
+                  This user don't have friends yet
+                </p>
+              )}
             </div>
           </div>
         </Col>

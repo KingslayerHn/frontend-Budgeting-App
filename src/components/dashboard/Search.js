@@ -84,7 +84,7 @@ const Search = () => {
             }}
           >
             {searchUsersReference.map((item) => (
-              <AvatarSearch key={item._id} {...item} item={item} />
+              <AvatarSearch key={item._id} {...item} item={item} pointer />
             ))}
           </div>
         )}

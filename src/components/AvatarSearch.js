@@ -11,24 +11,30 @@ import { serverUri } from '../utils/uris';
 const AvatarSearch = ({
   firstName,
   lastName,
+  keywords,
   profession,
   email,
   avatar,
   _id,
   item,
+  onClick,
+  pointer,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const handleClickUserProfile = () => {
-    dispatch(getUserReference(item));
-    history.push(`/profile/?q=${_id}`);
-    dispatch(resetReferencesUsers());
+    if (!onClick) {
+      dispatch(getUserReference(item));
+      history.push(`/profile/?q=${_id}`);
+      dispatch(resetReferencesUsers());
+    }
   };
   return (
     <div
       className={[styles.searchItemReference]}
       onClick={handleClickUserProfile}
+      style={{ cursor: pointer && 'pointer' }}
     >
       <Avatar
         size={50}
@@ -56,7 +62,9 @@ const AvatarSearch = ({
             fontWeight: 600,
             color: '#6a84f5',
           }}
-        >{`${firstName} ${lastName}`}</h6>
+        >
+          {keywords}
+        </h6>
         <span
           style={{
             margin: 0,
