@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import Avatar from '../../components/user/AvatarUserRef';
 import BiographyUserRef from '../user/BiographyUserRef';
 import { Button } from 'react-bootstrap';
-import { FaUserFriends, IoIosSend } from 'react-icons/all';
+import { FaUserFriends, IoIosSend, TiCancel } from 'react-icons/all';
 
 const ProfileSelectedUser = (props) => {
   const [send, setSend] = useState(false);
 
   const handleSendFriendRequest = () => {
-    setSend(!send);
+    setSend(true);
+  };
+  const handleCancelFriendship = () => {
+    setSend(false);
   };
   return (
     <div style={{ display: 'flex' }}>
@@ -22,31 +25,64 @@ const ProfileSelectedUser = (props) => {
         <Avatar avatar={props.avatar} shadow size={170} />
       </div>
       <div
-        style={{ marginLeft: 40, flex: 1, height: 'auto', paddingBottom: 10 }}
+        style={{
+          marginLeft: 40,
+          flex: 1,
+          height: 'auto',
+          paddingBottom: 10,
+          display: 'flex',
+          flexDirection: 'column',
+        }}
       >
         <BiographyUserRef {...props} />
-        <Button
-          variant={!send ? 'primary' : 'secondary'}
-          style={{
-            width: 'auto',
-            fontWeight: 300,
-            fontSize: 14,
-            border: 'none',
-          }}
-          onClick={handleSendFriendRequest}
-        >
-          {send ? (
-            <>
-              <IoIosSend style={{ fontSize: 14, marginRight: 5 }} />
-              Send
-            </>
-          ) : (
-            <>
-              <FaUserFriends style={{ fontSize: 14, marginRight: 5 }} />
-              Add as Friend
-            </>
+        <div style={{ display: 'flex' }}>
+          <Button
+            variant={!send ? 'primary' : 'secondary'}
+            style={{
+              width: 'auto',
+              fontWeight: 300,
+              fontSize: 14,
+              border: 'none',
+              margin: 3,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onClick={handleSendFriendRequest}
+            disabled={send}
+          >
+            {send ? (
+              <>
+                <IoIosSend style={{ fontSize: 14, marginRight: 5 }} />
+                Sent
+              </>
+            ) : (
+              <>
+                <FaUserFriends style={{ fontSize: 14, marginRight: 5 }} />
+                Add as Friend
+              </>
+            )}
+          </Button>
+          {send && (
+            <Button
+              variant={send ? 'primary' : 'secondary'}
+              style={{
+                width: 'auto',
+                fontWeight: 300,
+                fontSize: 14,
+                border: 'none',
+                margin: 3,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+              onClick={handleCancelFriendship}
+            >
+              <TiCancel style={{ fontSize: 14, marginRight: 5 }} />
+              Cancel request?
+            </Button>
           )}
-        </Button>
+        </div>
       </div>
     </div>
   );
