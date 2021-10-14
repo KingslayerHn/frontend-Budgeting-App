@@ -66,9 +66,6 @@ const ProfileSelectedUser = (props) => {
       .catch((err) => console.log(err));
   };
 
-  // TODO: calcel request friendship
-  const handleCancelFriendship = () => {};
-
   return (
     <div style={{ display: 'flex' }}>
       <div
@@ -107,7 +104,7 @@ const ProfileSelectedUser = (props) => {
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}
-                  onClick={handleCancelFriendship}
+                  onClick={handleDeclineFrienship}
                 >
                   <TiCancel style={{ fontSize: 14, marginRight: 5 }} />
                   Cancel request ?
@@ -157,7 +154,7 @@ const ProfileSelectedUser = (props) => {
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
-              onClick={handleCancelFriendship}
+              onClick={handleDeclineFrienship}
             >
               <TiCancel style={{ fontSize: 14, marginRight: 5 }} />
               Cancel Friendship ?

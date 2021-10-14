@@ -17,6 +17,7 @@ const ProfileUserSearch = () => {
   const dispatch = useDispatch();
 
   const { userRef } = useSelector((state) => state.references);
+  const { user } = useSelector((state) => state.auth);
   const { accountsUserReference, friendsUserReference } = useSelector(
     (state) => state.references
   );
@@ -92,9 +93,17 @@ const ProfileUserSearch = () => {
               }}
             >
               {friendsUserReference.length > 0 ? (
-                friendsUserReference.map((friend) => (
-                  <AvatarSearch {...friend.friend} onClick key={friend._id} />
-                ))
+                friendsUserReference.map((friend) =>
+                  user._id === friend?.sender?._id ? (
+                    <AvatarSearch {...friend.sender} onClick key={friend._id} />
+                  ) : (
+                    <AvatarSearch
+                      {...friend.reciver}
+                      onClick
+                      key={friend._id}
+                    />
+                  )
+                )
               ) : (
                 <p style={{ fontWeight: 200, color: '#6a84f5' }}>
                   This user don't have friends yet
