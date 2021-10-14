@@ -12,6 +12,7 @@ import Avatar from '../user/Avatar';
 const AvatarDetails = () => {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const { friends } = useSelector((state) => state.friends);
 
   const handleOpenModalUpdateImageProfile = () => {
     dispatch(openModalUpdateUserImageProfile(true));
@@ -45,7 +46,10 @@ const AvatarDetails = () => {
             style={{ color: '#fd6900', fontSize: 20, marginRight: 10 }}
           />
           <h5 style={{ fontWeight: 300, fontSize: 17, margin: 0 }}>
-            <b style={{ fontWeight: 600, color: '#4e6ef5' }}>{20}</b> friends
+            <b style={{ fontWeight: 600, color: '#4e6ef5' }}>
+              {friends.length}
+            </b>{' '}
+            friends
           </h5>
         </div>
         <div style={{ display: 'flex', alignSelf: 'start' }}>

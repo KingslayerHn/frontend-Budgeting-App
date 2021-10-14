@@ -14,12 +14,18 @@ import Friends from '../containers/Friends';
 import Loader from '../components/Loader';
 import Home from './Home';
 import ProfileUserSearch from '../components/Search/ProfileUserSearch';
+import {
+  getAllUserFriends,
+  getAllWaitingFriends,
+} from '../redux/actions/friends.action';
 
 const DashboardRouter = ({
   getAccounts,
   getExpenses,
   getIncomes,
   getTransferences,
+  getAllUserFriends,
+  getAllWaitingFriends,
 }) => {
   const { userLoaded, token } = useSelector((state) => state.auth);
   useEffect(() => {
@@ -27,7 +33,16 @@ const DashboardRouter = ({
     getExpenses();
     getIncomes();
     getTransferences();
-  });
+    getAllUserFriends();
+    getAllWaitingFriends();
+  }, [
+    getAccounts,
+    getExpenses,
+    getIncomes,
+    getTransferences,
+    getAllUserFriends,
+    getAllWaitingFriends,
+  ]);
 
   if (token && !userLoaded) {
     return <Loader />;
@@ -53,4 +68,6 @@ export default connect(null, {
   getExpenses,
   getIncomes,
   getTransferences,
+  getAllUserFriends,
+  getAllWaitingFriends,
 })(DashboardRouter);
