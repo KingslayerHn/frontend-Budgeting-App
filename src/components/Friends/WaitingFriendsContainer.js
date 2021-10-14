@@ -2,9 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import AvatarSearch from '../AvatarSearch';
 
-const FriendsListContainer = () => {
-  const { friends } = useSelector((state) => state.friends);
-  const { user } = useSelector((state) => state.auth);
+const WaitingFriendsContainer = () => {
+  const { waiting } = useSelector((state) => state.friends);
   return (
     <div
       style={{
@@ -14,14 +13,16 @@ const FriendsListContainer = () => {
         overflowY: 'auto',
       }}
     >
-      {friends.length > 0 ? (
-        friends.map((item) =>
-          item.sender._id !== user._id ? (
-            <AvatarSearch {...item.sender} key={item._id} pointer />
-          ) : (
-            <AvatarSearch {...item.reciver} key={item._id} pointer />
-          )
-        )
+      {waiting.length > 0 ? (
+        waiting.map((item) => (
+          <AvatarSearch
+            {...item.sender}
+            key={item._id}
+            friendWait
+            onClick
+            friend={item}
+          />
+        ))
       ) : (
         <p
           style={{
@@ -39,4 +40,4 @@ const FriendsListContainer = () => {
   );
 };
 
-export default FriendsListContainer;
+export default WaitingFriendsContainer;

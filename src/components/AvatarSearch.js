@@ -1,12 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Avatar from 'react-avatar';
 import styles from '../styles.module.scss';
 import tempAvatar from '../assets/avatar.svg';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { Button } from 'react-bootstrap';
 import { resetReferencesUsers } from '../redux/actions/search.action';
 import { getUserReference } from '../redux/actions/references.action';
 import { serverUri } from '../utils/uris';
+import {
+  deleteWaitingFriendFromList,
+  changeStatusOfFriendship,
+} from '../redux/actions/friends.action';
 
 const AvatarSearch = ({
   firstName,
@@ -19,6 +24,8 @@ const AvatarSearch = ({
   item,
   onClick,
   pointer,
+  friendWait,
+  friend,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -29,6 +36,24 @@ const AvatarSearch = ({
       history.push(`/profile/?q=${_id}`);
       dispatch(resetReferencesUsers());
     }
+  };
+  const handleAcceptFriendship = () => {
+    dispatch(deleteWaitingFriendFromList(friend));
+    dispatch(
+      changeStatusOfFriendship({
+        status: 'accepted',
+        friend: friend._id,
+      })
+    );
+  };
+  const handleDeclineFrienship = () => {
+    dispatch(deleteWaitingFriendFromList(friend));
+    dispatch(
+      changeStatusOfFriendship({
+        status: 'decline',
+        friend: friend._id,
+      })
+    );
   };
   return (
     <div
@@ -77,6 +102,29 @@ const AvatarSearch = ({
           {profession}
         </span>
         <span style={{ fontSize: 13, color: '#3d6586' }}>{email}</span>
+        {friendWait && (
+          <div style={{ display: 'flex', marginBottom: 10 }}>
+            <Button
+              variant="primary"
+              style={{ width: 'auto', border: 'none', fontSize: 12, margin: 2 }}
+              onClick={handleAcceptFriendship}
+            >
+              accept
+            </Button>
+            <Button
+              variant="secondary"
+              style={{
+                width: 'auto',
+                border: 'none',
+                fontSize: 12,
+                margin: 2,
+              }}
+              onClick={handleDeclineFrienship}
+            >
+              decline
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

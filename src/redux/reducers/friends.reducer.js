@@ -28,7 +28,7 @@ export default (state = initialState, action) => {
     case DELETE_FRIEND_FROM_LIST:
       return {
         ...state,
-        friends: state.friends.filter((friend) => friend._id !== payload._id),
+        friends: state.friends.filter((friend) => friend !== payload._id),
       };
     case DELETE_WAITING_ELEMENT:
       return {
