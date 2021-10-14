@@ -3,16 +3,21 @@ import Avatar from '../../components/user/AvatarUserRef';
 import BiographyUserRef from '../user/BiographyUserRef';
 import { Button } from 'react-bootstrap';
 import { FaUserFriends, IoIosSend, TiCancel } from 'react-icons/all';
+import { addFriend } from '../../redux/actions/friends.action';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ProfileSelectedUser = (props) => {
+  const dispatch = useDispatch();
   const [send, setSend] = useState(false);
+  const { userRef } = useSelector((state) => state.references);
 
   const handleSendFriendRequest = () => {
-    setSend(true);
+    dispatch(addFriend({ friend: userRef._id }));
   };
   const handleCancelFriendship = () => {
     setSend(false);
   };
+
   return (
     <div style={{ display: 'flex' }}>
       <div

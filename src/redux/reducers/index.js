@@ -10,6 +10,7 @@ import ui from './ui.reducer';
 import notifications from './notifications.reducer';
 import stadistics from './stadistics.reducer';
 import search from './search.reducer';
+import friends from './friends.reducer';
 
 export default combineReducers({
   auth,
@@ -20,6 +21,7 @@ export default combineReducers({
   references,
   notifications,
   stadistics,
+  friends,
   search,
   ui,
   alerts,
