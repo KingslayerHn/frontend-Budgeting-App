@@ -2,30 +2,71 @@ import React, { useEffect, useState } from 'react';
 import Avatar from '../../components/user/AvatarUserRef';
 import BiographyUserRef from '../user/BiographyUserRef';
 import { Button } from 'react-bootstrap';
-import { FaUserFriends, IoIosSend, TiCancel } from 'react-icons/all';
+import { FaUserFriends, TiCancel } from 'react-icons/all';
 import {
   addFriend,
+  changeStatusOfFriendship,
   checkStatusFriendship,
+  deleteWaitingFriendFromList,
 } from '../../redux/actions/friends.action';
 import { useDispatch, useSelector } from 'react-redux';
 
 const ProfileSelectedUser = (props) => {
   const dispatch = useDispatch();
   const { userRef } = useSelector((state) => state.references);
-  const [type, setType] = useState(null);
+  const { user } = useSelector((state) => state.auth);
+  const [tempItem, setTempItem] = useState(null);
 
   useEffect(() => {
     checkStatusFriendship({ friend: userRef?._id })
-      .then((type) => setType(type))
+      .then((frienship) => {
+        setTempItem(frienship);
+      })
       .catch((err) => console.log(err));
   }, [userRef._id]);
 
   const handleSendFriendRequest = () => {
     dispatch(addFriend({ friend: userRef?._id }));
     checkStatusFriendship({ friend: userRef?._id })
-      .then((type) => setType(type))
+      .then((frienship) => {
+        setTempItem(frienship);
+      })
       .catch((err) => console.log(err));
   };
+
+  const handleAcceptFriendship = async () => {
+    dispatch(deleteWaitingFriendFromList(tempItem));
+    await dispatch(
+      changeStatusOfFriendship({
+        status: 'accepted',
+        friend: tempItem.data._id,
+      })
+    );
+
+    checkStatusFriendship({ friend: userRef?._id })
+      .then((frienship) => {
+        setTempItem(frienship);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleDeclineFrienship = async () => {
+    dispatch(deleteWaitingFriendFromList(tempItem));
+    await dispatch(
+      changeStatusOfFriendship({
+        status: 'decline',
+        friend: tempItem.data._id,
+      })
+    );
+
+    checkStatusFriendship({ friend: userRef?._id })
+      .then((frienship) => {
+        setTempItem(frienship);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  // TODO: calcel request friendship
   const handleCancelFriendship = () => {};
 
   return (
@@ -51,45 +92,59 @@ const ProfileSelectedUser = (props) => {
       >
         <BiographyUserRef {...props} />
         <div style={{ display: 'flex' }}>
-          {type === 'sent' && (
-            <>
-              <Button
-                variant={'secondary'}
-                style={{
-                  width: 'auto',
-                  fontWeight: 300,
-                  fontSize: 14,
-                  border: 'none',
-                  margin: 3,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-                disabled
-              >
-                <IoIosSend style={{ fontSize: 14, marginRight: 5 }} />
-                Sent
-              </Button>
-              <Button
-                variant="danger"
-                style={{
-                  width: 'auto',
-                  fontWeight: 300,
-                  fontSize: 14,
-                  border: 'none',
-                  margin: 3,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-                onClick={handleCancelFriendship}
-              >
-                <TiCancel style={{ fontSize: 14, marginRight: 5 }} />
-                Cancel request ?
-              </Button>
-            </>
-          )}
-          {type === 'accepted' && (
+          {tempItem?.data?.status === 'sent' &&
+            user._id === tempItem?.data?.sender && (
+              <>
+                <Button
+                  variant="danger"
+                  style={{
+                    width: 'auto',
+                    fontWeight: 300,
+                    fontSize: 14,
+                    border: 'none',
+                    margin: 3,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                  onClick={handleCancelFriendship}
+                >
+                  <TiCancel style={{ fontSize: 14, marginRight: 5 }} />
+                  Cancel request ?
+                </Button>
+              </>
+            )}
+          {tempItem?.data?.status === 'sent' &&
+            tempItem?.data?.reciver === user._id && (
+              <div style={{ display: 'flex', marginBottom: 10 }}>
+                <Button
+                  variant="primary"
+                  style={{
+                    width: 'auto',
+                    border: 'none',
+                    fontSize: 12,
+                    margin: 2,
+                  }}
+                  onClick={handleAcceptFriendship}
+                >
+                  accept
+                </Button>
+                <Button
+                  variant="danger"
+                  style={{
+                    width: 'auto',
+                    border: 'none',
+                    fontSize: 12,
+                    margin: 2,
+                  }}
+                  onClick={handleDeclineFrienship}
+                >
+                  decline
+                </Button>
+              </div>
+            )}
+
+          {tempItem?.data?.status === 'accepted' && (
             <Button
               variant="danger"
               style={{
@@ -108,8 +163,7 @@ const ProfileSelectedUser = (props) => {
               Cancel Friendship ?
             </Button>
           )}
-
-          {type === 'none' && (
+          {tempItem?.type === 'none' && (
             <Button
               variant="primary"
               style={{

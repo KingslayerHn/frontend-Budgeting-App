@@ -6,6 +6,7 @@ import {
   DELETE_WAITING_ELEMENT,
   ADD_FRIEND,
 } from '../types';
+import { setAlert as createAlert } from './alerts.action';
 
 export const addFriend =
   ({ friend }) =>
@@ -22,6 +23,12 @@ export const addFriend =
           type: ADD_FRIEND,
           payload: res.data.friend,
         });
+        dispatch(
+          createAlert({
+            variant: 'success',
+            message: 'Friendship request has been sent',
+          })
+        );
       }
     } catch (error) {
       console.log(error);
@@ -83,6 +90,22 @@ export const changeStatusOfFriendship =
       await axios.put(`/api/friends/${friend}`, body, config);
 
       dispatch(getAllUserFriends());
+      if (status === 'accepted') {
+        // TODO: notifications socket when user change status of friendship
+        dispatch(
+          createAlert({
+            variant: 'success',
+            message: 'Friendship request has been accepted',
+          })
+        );
+      } else {
+        dispatch(
+          createAlert({
+            variant: 'danger',
+            message: 'Friendship request has been decline',
+          })
+        );
+      }
     } catch (error) {
       console.log(error);
     }
@@ -107,7 +130,7 @@ export const checkStatusFriendship = async ({ friend }) => {
   try {
     const res = await axios.post(`/api/friends/are/friends/${friend}`, config);
 
-    return res.data.type;
+    return res.data;
   } catch (error) {
     console.log(error);
   }

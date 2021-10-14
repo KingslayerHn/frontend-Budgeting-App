@@ -11,7 +11,6 @@ import { serverUri } from '../utils/uris';
 import {
   deleteWaitingFriendFromList,
   changeStatusOfFriendship,
-  checkStatusFriendship,
 } from '../redux/actions/friends.action';
 
 const AvatarSearch = ({
