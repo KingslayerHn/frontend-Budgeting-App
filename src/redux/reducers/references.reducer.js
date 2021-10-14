@@ -8,6 +8,7 @@ import {
   UPDATE_REFERENCE_BY_INCOME,
   GET_USERS_SEARCH_REFERENCE,
   GET_ACCOUNTS_USER_REF,
+  GET_FRIEND_LIST_REF,
 } from '../types';
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
   accountRef: null,
   searchUsersReference: [],
   accountsUserReference: [],
+  friendsUserReference: [],
 };
 
 export default (state = initialState, action) => {
@@ -52,6 +54,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         accountsUserReference: payload,
+      };
+    case GET_FRIEND_LIST_REF:
+      return {
+        ...state,
+        friendsUserReference: payload,
       };
 
     default:

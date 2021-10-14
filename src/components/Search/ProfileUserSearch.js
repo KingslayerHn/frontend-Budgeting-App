@@ -5,6 +5,7 @@ import queryString from 'query-string';
 import { useLocation } from 'react-router-dom';
 import {
   getAccountsUserRef,
+  getAllUserFriendsById,
   getUserReferenceById,
 } from '../../redux/actions/references.action';
 import ProfileSelectedUser from './ProfileSelectedUser';
@@ -16,7 +17,9 @@ const ProfileUserSearch = () => {
   const dispatch = useDispatch();
 
   const { userRef } = useSelector((state) => state.references);
-  const { accountsUserReference } = useSelector((state) => state.references);
+  const { accountsUserReference, friendsUserReference } = useSelector(
+    (state) => state.references
+  );
 
   useEffect(() => {
     const { q } = queryString.parse(location.search);
@@ -25,28 +28,8 @@ const ProfileUserSearch = () => {
 
   useEffect(() => {
     dispatch(getAccountsUserRef(userRef?._id));
+    dispatch(getAllUserFriendsById(userRef?._id));
   }, [dispatch, userRef]);
-
-  const friends = [
-    {
-      _id: 3,
-      keywords: 'Lester Eduardo Arteaga Andino',
-      profession: 'Full stack developer',
-      email: 'lesterarte@gmail.com',
-    },
-    {
-      _id: 213,
-      keywords: 'Lester Eduardo Arteaga Andino',
-      profession: 'Full stack developer',
-      email: 'lesterarte@gmail.com',
-    },
-    {
-      _id: 243,
-      keywords: 'Lester Eduardo Arteaga Andino',
-      profession: 'Full stack developer',
-      email: 'lesterarte@gmail.com',
-    },
-  ];
 
   if (!userRef) {
     return <NotFoundPage />;
@@ -108,9 +91,9 @@ const ProfileUserSearch = () => {
                 borderRadius: 20,
               }}
             >
-              {friends.length > 0 ? (
-                friends.map((friend) => (
-                  <AvatarSearch {...friend} onClick key={friend._id} />
+              {friendsUserReference.length > 0 ? (
+                friendsUserReference.map((friend) => (
+                  <AvatarSearch {...friend.friend} onClick key={friend._id} />
                 ))
               ) : (
                 <p style={{ fontWeight: 200, color: '#6a84f5' }}>
