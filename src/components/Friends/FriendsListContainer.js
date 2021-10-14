@@ -16,10 +16,10 @@ const FriendsListContainer = () => {
     >
       {friends.length > 0 ? (
         friends.map((item) =>
-          item.sender._id !== user._id ? (
-            <AvatarSearch {...item.sender} key={item._id} pointer />
+          item?.sender._id !== user._id ? (
+            <AvatarSearch {...item?.sender} key={item?._id} pointer />
           ) : (
-            <AvatarSearch {...item.reciver} key={item._id} pointer />
+            <AvatarSearch {...item?.reciver} key={item?._id} pointer />
           )
         )
       ) : (

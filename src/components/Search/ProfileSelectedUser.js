@@ -1,22 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Avatar from '../../components/user/AvatarUserRef';
 import BiographyUserRef from '../user/BiographyUserRef';
 import { Button } from 'react-bootstrap';
 import { FaUserFriends, IoIosSend, TiCancel } from 'react-icons/all';
-import { addFriend } from '../../redux/actions/friends.action';
+import {
+  addFriend,
+  checkStatusFriendship,
+} from '../../redux/actions/friends.action';
 import { useDispatch, useSelector } from 'react-redux';
 
 const ProfileSelectedUser = (props) => {
   const dispatch = useDispatch();
-  const [send, setSend] = useState(false);
   const { userRef } = useSelector((state) => state.references);
+  const [type, setType] = useState(null);
+
+  useEffect(() => {
+    checkStatusFriendship({ friend: userRef?._id })
+      .then((type) => setType(type))
+      .catch((err) => console.log(err));
+  }, [userRef._id]);
 
   const handleSendFriendRequest = () => {
-    dispatch(addFriend({ friend: userRef._id }));
+    dispatch(addFriend({ friend: userRef?._id }));
+    checkStatusFriendship({ friend: userRef?._id })
+      .then((type) => setType(type))
+      .catch((err) => console.log(err));
   };
-  const handleCancelFriendship = () => {
-    setSend(false);
-  };
+  const handleCancelFriendship = () => {};
 
   return (
     <div style={{ display: 'flex' }}>
@@ -41,36 +51,47 @@ const ProfileSelectedUser = (props) => {
       >
         <BiographyUserRef {...props} />
         <div style={{ display: 'flex' }}>
-          <Button
-            variant={!send ? 'primary' : 'secondary'}
-            style={{
-              width: 'auto',
-              fontWeight: 300,
-              fontSize: 14,
-              border: 'none',
-              margin: 3,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-            onClick={handleSendFriendRequest}
-            disabled={send}
-          >
-            {send ? (
-              <>
+          {type === 'sent' && (
+            <>
+              <Button
+                variant={'secondary'}
+                style={{
+                  width: 'auto',
+                  fontWeight: 300,
+                  fontSize: 14,
+                  border: 'none',
+                  margin: 3,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                disabled
+              >
                 <IoIosSend style={{ fontSize: 14, marginRight: 5 }} />
                 Sent
-              </>
-            ) : (
-              <>
-                <FaUserFriends style={{ fontSize: 14, marginRight: 5 }} />
-                Add as Friend
-              </>
-            )}
-          </Button>
-          {send && (
+              </Button>
+              <Button
+                variant="danger"
+                style={{
+                  width: 'auto',
+                  fontWeight: 300,
+                  fontSize: 14,
+                  border: 'none',
+                  margin: 3,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+                onClick={handleCancelFriendship}
+              >
+                <TiCancel style={{ fontSize: 14, marginRight: 5 }} />
+                Cancel request ?
+              </Button>
+            </>
+          )}
+          {type === 'accepted' && (
             <Button
-              variant={send ? 'primary' : 'secondary'}
+              variant="danger"
               style={{
                 width: 'auto',
                 fontWeight: 300,
@@ -84,7 +105,27 @@ const ProfileSelectedUser = (props) => {
               onClick={handleCancelFriendship}
             >
               <TiCancel style={{ fontSize: 14, marginRight: 5 }} />
-              Cancel request?
+              Cancel Friendship ?
+            </Button>
+          )}
+
+          {type === 'none' && (
+            <Button
+              variant="primary"
+              style={{
+                width: 'auto',
+                fontWeight: 300,
+                fontSize: 14,
+                border: 'none',
+                margin: 3,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+              onClick={handleSendFriendRequest}
+            >
+              <FaUserFriends style={{ fontSize: 14, marginRight: 5 }} />
+              Add as Friend
             </Button>
           )}
         </div>

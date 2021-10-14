@@ -33,7 +33,7 @@ const WaitingFriendsContainer = () => {
             fontWeight: 300,
           }}
         >
-          Not have friends yet!!
+          Not have request yet!!
         </p>
       )}
     </div>

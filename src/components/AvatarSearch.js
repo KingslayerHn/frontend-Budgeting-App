@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from 'react-avatar';
 import styles from '../styles.module.scss';
 import tempAvatar from '../assets/avatar.svg';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { resetReferencesUsers } from '../redux/actions/search.action';
 import { getUserReference } from '../redux/actions/references.action';
@@ -11,6 +11,7 @@ import { serverUri } from '../utils/uris';
 import {
   deleteWaitingFriendFromList,
   changeStatusOfFriendship,
+  checkStatusFriendship,
 } from '../redux/actions/friends.action';
 
 const AvatarSearch = ({
@@ -112,7 +113,7 @@ const AvatarSearch = ({
               accept
             </Button>
             <Button
-              variant="secondary"
+              variant="danger"
               style={{
                 width: 'auto',
                 border: 'none',

@@ -97,3 +97,18 @@ export const deleteWaitingFriendFromList = (item) => ({
   type: DELETE_WAITING_ELEMENT,
   payload: item,
 });
+
+export const checkStatusFriendship = async ({ friend }) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  try {
+    const res = await axios.post(`/api/friends/are/friends/${friend}`, config);
+
+    return res.data.type;
+  } catch (error) {
+    console.log(error);
+  }
+};

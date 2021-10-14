@@ -14,6 +14,11 @@
   padding: 0;
   margin: 0;
 }
+.btn-danger {
+  background-color: #e65b65 !important;
+  border-radius: 30px !important;
+  width: 100px;
+}
 
 input:focus {
   box-shadow: none !important;
@@ -36,5 +41,8 @@ textarea:focus {
 }
 
 .btn-light:focus {
+  box-shadow: none !important;
+}
+.btn-danger:focus {
   box-shadow: none !important;
 }
