@@ -45,8 +45,13 @@ export const addExpense =
         type: ADD_EXPENSES,
         payload: res.data,
       });
-      dispatch(debit({ amount: amountAccount - tempAmount, id: id }));
-      dispatch(updateAccountByExpense(res.data.amount));
+      const newAmount = amountAccount - tempAmount;
+      console.log('amount de la cuenta ref ', amountAccount);
+      console.log('amount a debitar ', amount);
+      console.log('nuevo amount', newAmount);
+
+      dispatch(debit({ amount: newAmount, id: id }));
+      dispatch(updateAccountByExpense(amountAccount - tempAmount));
       dispatch(openModalAddExpense(false));
       dispatch(
         createAlert({

@@ -151,6 +151,9 @@ const ModalAddTransference = () => {
                       }}
                       defaultValue={stateAccounts[0]}
                     >
+                      <option value="" hidden>
+                        Select account
+                      </option>
                       {stateAccounts.map((a) => (
                         <option key={a._id} value={a._id}>
                           {a.description}

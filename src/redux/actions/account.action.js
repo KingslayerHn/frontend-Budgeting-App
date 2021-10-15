@@ -84,6 +84,7 @@ export const debit =
         'Content-Type': 'application/json',
       },
     };
+    console.log('lo que estoy enviando es: ', amount);
 
     const body = JSON.stringify({ amount });
 

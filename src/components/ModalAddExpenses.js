@@ -167,7 +167,11 @@ const ModalAddExpenses = () => {
               variant="primary"
               style={{ margin: 5 }}
               onClick={handleSubmit}
-              disabled={description.trim() <= 3 || amount <= 0}
+              disabled={
+                description.trim() <= 3 ||
+                amount <= 0 ||
+                amount > accountRef.amount
+              }
             >
               Add
             </Button>

@@ -47,7 +47,7 @@ export const addIncome =
       });
       dispatch(debit({ amount: amountAccount + tempAmount, id: id }));
       dispatch(openModalAddIncome(false));
-      dispatch(updateAccountByIncome(res.data.amount));
+      dispatch(updateAccountByIncome(amountAccount + tempAmount));
       dispatch(
         createAlert({
           message: `Income: ${description} added succefully!!`,
